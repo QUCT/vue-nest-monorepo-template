@@ -1,0 +1,11 @@
+server:
+  port: 3016
+  origin: localhost
+
+jwt:
+  secret: 'topSecret51'
+
+redis:
+  host: 'hw.prod.toimc.com'
+  port: 43006
+  password: 'n85Arxyl75Uiwv1jXmiL5opOmgvznJX9'

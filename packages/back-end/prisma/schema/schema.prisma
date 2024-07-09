@@ -1,0 +1,16 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["prismaSchemaFolder"] // 开启多scheme模式
+}
+
+datasource db {
+  provider     = "mysql"
+  url          = env("DATABASE_URL")
+  relationMode = "prisma" // 关联模式切换为非外键
+}
+
+// generator comments { // 使用脚本生成数据库注释
+//   provider = "ts-node  prisma/schema/commentsGenerator.ts"
+// }
+
+// model 名称一律小写 创建出来的表名才符合规范 字段名一律添加map

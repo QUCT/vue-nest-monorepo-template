@@ -1,0 +1,12 @@
+model user {
+  id        Int        @id @default(autoincrement())
+  name      String     @db.VarChar(50)
+  email     String     @unique @db.VarChar(20)
+  password  String     @db.VarChar(20)
+  phone     BigInt?
+  createdAt DateTime   @default(now()) @map("created_at")
+  updatedAt DateTime   @updatedAt @map("updated_at")
+  userRoles userRole[]
+
+  @@map("users")
+}

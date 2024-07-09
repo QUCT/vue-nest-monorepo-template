@@ -1,0 +1,11 @@
+server:
+  port: 3018
+  origin: localhost
+
+jwt:
+  secret: 'ai0x76521321wwe'
+
+redis:
+  host: 'localhost'
+  port: 6379
+  password: 'ai0xbhc2112io434'

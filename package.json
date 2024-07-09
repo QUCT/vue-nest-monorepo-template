@@ -1,0 +1,17 @@
+{
+  "name": "full-stack-template",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:all": "concurrently \"pnpm --filter ./packages/shared run watch\" \"pnpm --filter ./packages/font-end run dev\" \"pnpm --filter ./packages/back-end run start:dev\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^8.2.2",
+    "cross-env": "^7.0.3"
+  }
+}

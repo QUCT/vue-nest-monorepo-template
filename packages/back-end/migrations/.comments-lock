@@ -1,0 +1,45 @@
+-- generator-version: 0.0
+
+-- Model permissions comments
+
+
+
+-- Model roles comments
+
+
+
+-- Model role_permission comments
+
+
+
+-- Model users comments
+
+SET @column_type = ( SELECT column_type FROM information_schema.COLUMNS WHERE table_name = 'users' AND column_name = 'id' );
+    SET @alter_sql = CONCAT( 'ALTER TABLE users MODIFY COLUMN id ', @column_type, ' COMMENT ''真的有点烦人''' );
+    PREPARE alter_statement  FROM @alter_sql;
+    EXECUTE alter_statement;
+    DEALLOCATE PREPARE alter_statement;
+SET @column_type = ( SELECT column_type FROM information_schema.COLUMNS WHERE table_name = 'users' AND column_name = 'name' );
+    SET @alter_sql = CONCAT( 'ALTER TABLE users MODIFY COLUMN name ', @column_type, ' COMMENT ''真的有点烦人''' );
+    PREPARE alter_statement  FROM @alter_sql;
+    EXECUTE alter_statement;
+    DEALLOCATE PREPARE alter_statement;
+SET @column_type = ( SELECT column_type FROM information_schema.COLUMNS WHERE table_name = 'users' AND column_name = 'email' );
+    SET @alter_sql = CONCAT( 'ALTER TABLE users MODIFY COLUMN email ', @column_type, ' COMMENT ''primaryKey''' );
+    PREPARE alter_statement  FROM @alter_sql;
+    EXECUTE alter_statement;
+    DEALLOCATE PREPARE alter_statement;
+SET @column_type = ( SELECT column_type FROM information_schema.COLUMNS WHERE table_name = 'users' AND column_name = 'created_at' );
+    SET @alter_sql = CONCAT( 'ALTER TABLE users MODIFY COLUMN created_at ', @column_type, ' COMMENT ''真的有点烦人''' );
+    PREPARE alter_statement  FROM @alter_sql;
+    EXECUTE alter_statement;
+    DEALLOCATE PREPARE alter_statement;
+SET @column_type = ( SELECT column_type FROM information_schema.COLUMNS WHERE table_name = 'users' AND column_name = 'updated_at' );
+    SET @alter_sql = CONCAT( 'ALTER TABLE users MODIFY COLUMN updated_at ', @column_type, ' COMMENT ''primaryKey''' );
+    PREPARE alter_statement  FROM @alter_sql;
+    EXECUTE alter_statement;
+    DEALLOCATE PREPARE alter_statement;
+
+
+-- Model user_role comments
+

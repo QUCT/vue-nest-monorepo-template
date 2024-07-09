@@ -1,0 +1,13 @@
+model menuPermissions {
+  id           Int        @id @default(autoincrement())
+  menu         menu       @relation(fields: [menuId], references: [id])
+  menuId       Int        @map("menu_id")
+  permission   permission @relation(fields: [permissionId], references: [id])
+  permissionId Int        @map("permission_id")
+  createdAt    DateTime   @default(now()) @map("created_at")
+  updatedAt    DateTime   @updatedAt @map("updated_at")
+
+  @@index([menuId])
+  @@index([permissionId])
+  @@map("menu_permission")
+}

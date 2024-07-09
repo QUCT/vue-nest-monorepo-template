@@ -1,0 +1,12 @@
+model permission {
+  id                  Int                   @id @default(autoincrement())
+  name                String                @unique @db.VarChar(50)
+  createdAt           DateTime              @default(now()) @map("created_at")
+  updatedAt           DateTime              @updatedAt @map("updated_at")
+  rolePermissions     rolePermission[]
+  menuPermissions     menuPermissions[]
+  operationPermission operationPermission[]
+
+  @@map("permissions")
+}
+

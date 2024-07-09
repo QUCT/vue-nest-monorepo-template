@@ -1,0 +1,19 @@
+{
+  "name": "shared",
+  "version": "1.0.0",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/cjs/index.d.ts",
+  "scripts": {
+    "build:cjs": "tsc -p tsconfig.cjs.json",
+    "build:esm": "tsc -p tsconfig.esm.json",
+    "build": "pnpm run build:cjs && pnpm run build:esm",
+    "watch:cjs": "tsc -p tsconfig.cjs.json --watch",
+    "watch:esm": "tsc -p tsconfig.esm.json --watch",
+    "watch": "concurrently \"pnpm run watch:cjs\" \"pnpm run watch:esm\""
+  },
+  "dependencies": {
+    "concurrently": "^8.2.2",
+    "typescript": "^5.5.2"
+  }
+}

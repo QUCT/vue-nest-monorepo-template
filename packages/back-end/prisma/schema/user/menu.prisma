@@ -1,0 +1,11 @@
+model menu {
+  id              Int               @id @default(autoincrement())
+  name            String            @unique @db.VarChar(50)
+  pid             Int?              @unique
+  menuPermissions menuPermissions[]
+  createdAt       DateTime          @default(now()) @map("created_at")
+  updatedAt       DateTime          @updatedAt @map("updated_at")
+
+  @@index([pid])
+  @@map("menus")
+}
