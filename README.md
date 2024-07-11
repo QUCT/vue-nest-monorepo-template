@@ -1,4 +1,4 @@
-# Vue-Nest Monorepo
+# vue-nest-monorepo
 
 ## 目录
 
@@ -16,13 +16,13 @@
 
 ## 介绍
 
-Vue-Nest Monorepo 是一个基于 TypeScript + Vue 3 + NestJS + Prisma + ACSL 的 monorepo 架构全栈开发模板。
+基于Typescript+vue3+nestjs+prisma+acsl的monorepo架构的全栈开发模板
 
 本模板提供了完整的单体应用请求-响应链路，包括日志记录、身份验证、RBAC 控制、API 限流、请求数据序列化和响应数据序列化。
 
-我们还提供了 Docker Compose 和 Dockerfile 配置，便于本地调试和部署。
+提供docker-compose及dockerfile便捷的本地调式及部署
 
-这个项目旨在为有兴趣转向后端或全栈开发的前端开发者提供参考和使用。
+项目旨在为有兴趣转向后端或全栈开发的前端同学提供参考和使用。
 
 **注意：** 本项目目前仍在开发中。
 
