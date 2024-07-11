@@ -8,7 +8,8 @@ import { AuthService } from './auth/auth.service';
 import { RolesModule } from './roles/roles.module';
 import { MenuModule } from './menu/menu.module';
 import { PermissionModule } from './permission/permission.module';
-import { TtModule } from './tt/tt.module';
+// import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
+// import { APP_GUARD } from '@nestjs/core';
 
 @Module({
   imports: [
@@ -18,9 +19,21 @@ import { TtModule } from './tt/tt.module';
     RolesModule,
     MenuModule,
     PermissionModule,
-    TtModule,
+    // ThrottlerModule.forRoot([
+    //   {
+    //     ttl: 60000, // 限速
+    //     limit: 20,
+    //   },
+    // ]),
   ],
   controllers: [AppController],
-  providers: [AppService, AuthService],
+  providers: [
+    AppService,
+    AuthService,
+    // {
+    //   provide: APP_GUARD,
+    //   useClass: ThrottlerGuard,
+    // },
+  ],
 })
 export class AppModule {}

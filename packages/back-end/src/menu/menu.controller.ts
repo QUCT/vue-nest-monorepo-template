@@ -16,9 +16,11 @@ import { UpdateMenuDto } from './dto/update-menu.dto';
 import { JwtGuard } from 'guards/jwt.guard';
 import { CommonRulesGuard } from 'guards/common-rules.guard';
 import { ControllerPrefix } from 'decorator/controller-prefix.decorator';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('menu')
 @Controller('menu')
-@ControllerPrefix('menu')
+@ControllerPrefix('menu') // 配合权限控制使用
 @UseGuards(JwtGuard, CommonRulesGuard)
 export class MenuController {
   constructor(private readonly menuService: MenuService) {}

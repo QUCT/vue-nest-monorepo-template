@@ -31,7 +31,6 @@ export class CommonRulesGuard implements CanActivate {
     const prefix = this.reflector.get<string>('controllerPrefix', controller);
 
     const subject = method;
-    console.log('🚀 ~ CommonRulesGuard ~ canActivate ~ method:', method);
     // 定义权限
     const ability = await this.abilityFactory.defineAbility(
       user.userId,

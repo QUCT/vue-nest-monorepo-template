@@ -1,42 +1,46 @@
-# vue-nest-monorepo
+# Vue-Nest Monorepo
 
-#### 介绍
+## 目录
 
-项目开发中
+- [介绍](#介绍)
+- [特点](#特点)
+- [技术栈](#技术栈)
+- [项目结构](#项目结构)
+- [安装指南](#安装指南)
+- [使用说明](#使用说明)
+- [待办事项](#待办事项)
+- [下一步计划](#下一步计划)
+- [软件架构](#软件架构)
+- [贡献指南](#贡献指南)
+- [许可证](#许可证)
 
-### 特点：
+## 介绍
 
-基于vue3+nestjs+prisma的monorepo架构的全栈开发模板。
+Vue-Nest Monorepo 是一个基于 TypeScript + Vue 3 + NestJS + Prisma + ACSL 的 monorepo 架构全栈开发模板。
 
-基于RBAC的权限管理，以及基本的细粒度的接口权限管理，防止越权。
+本模板提供了完整的单体应用请求-响应链路，包括日志记录、身份验证、RBAC 控制、API 限流、请求数据序列化和响应数据序列化。
 
-基于monorepo+Typescript架构，前端和后端可共享类型及方法，shared会同时打包成为cjs和esm以供前后端方便调用。
+我们还提供了 Docker Compose 和 Dockerfile 配置，便于本地调试和部署。
 
-基于prisma快速搭建数数据库模型，并解决了prisma无法使用comment描述字段入库问题。
+这个项目旨在为有兴趣转向后端或全栈开发的前端开发者提供参考和使用。
 
-#### 软件架构
+**注意：** 本项目目前仍在开发中。
 
-前端：vue3+vite
+## 特点
 
-后端：nestjs+prisma+mysql+redis
+- 基于 RBAC 的权限管理系统，提供细粒度的 API 访问控制，防止越权访问。
+- 采用 monorepo + TypeScript 架构，前端和后端可共享类型定义和方法。shared 包会同时打包为 CommonJS 和 ESM 格式，方便前后端调用。
+- 使用 Prisma 快速构建数据库模型，并解决了 Prisma 无法使用 comment 描述字段入库的问题。
+- 提供 Swagger UI 文档，方便 API 调试和文档管理。
 
-鉴权及权限管理：jwt+acsl
+## 技术栈
 
-#### 安装教程
+| 层级           | 技术                   |
+| -------------- | ---------------------- |
+| 前端           | Vue 3 + Vite           |
+| 后端           | NestJS                 |
+| 数据库和 ORM   | Prisma + MySQL + Redis |
+| 数据验证       | class-validator        |
+| 身份验证和授权 | JWT + ACSL             |
 
-#### 使用说明
-
-完成node全栈快速开发模板
-
-#### Todo
-
-整理优化代码
-添加swagger
-添加redis
-完成单元测试
-
-完善文档
-
-#### Next
-
-接入admin模板
+## 项目结构

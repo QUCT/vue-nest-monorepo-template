@@ -1,10 +1,9 @@
 model rolePermission {
   id           Int        @id @default(autoincrement())
-  role        role       @relation(fields: [roleId], references: [id])
+  role         role       @relation(fields: [roleId], references: [id])
   roleId       Int        @map("role_id")
   permission   permission @relation(fields: [permissionId], references: [id])
   permissionId Int        @map("permission_id")
-  status       Status     @default(INACTIVE) ///是否启用该条权限
   createdAt    DateTime   @default(now()) @map("created_at")
   updatedAt    DateTime   @updatedAt @map("updated_at")
 
