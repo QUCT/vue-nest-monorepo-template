@@ -1,9 +1,4 @@
-import {
-  CanActivate,
-  ExecutionContext,
-  ForbiddenException,
-  Injectable,
-} from '@nestjs/common';
+import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { PrismaService } from 'common/service/prisma.service';
 import { FastifyRequest } from 'fastify/types/request';
@@ -34,9 +29,7 @@ export class CommonRulesGuard implements CanActivate {
     // 获取当前请求的信息
     const controller = context.getClass();
     const prefix = this.reflector.get<string>('controllerPrefix', controller);
-    console.log('🚀 ~ CommonRulesGuard ~ canActivate ~ prefix:', prefix);
 
-    // 动态生成 subject，例如 "Menu:GET:/menus"
     const subject = method;
     console.log('🚀 ~ CommonRulesGuard ~ canActivate ~ method:', method);
     // 定义权限
