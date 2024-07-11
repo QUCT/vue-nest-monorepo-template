@@ -4,12 +4,14 @@ import { CreateUserDto } from 'src/user/dto/create-user.dto';
 import { UserService } from 'src/user/user.service';
 import * as argon2 from 'argon2';
 import { plainToInstance } from 'class-transformer';
+import { PrismaService } from 'common/service/prisma.service';
 
 @Injectable()
 export class AuthService {
   constructor(
     private userService: UserService,
     private jwt: JwtService,
+    private prismaService: PrismaService,
   ) {}
   async singnIn(email: string, password: string) {
     const { data, err } = await this.userService.findOneByEmail(email);
@@ -34,10 +36,43 @@ export class AuthService {
     // throw new HttpException('当前用户密码不正确', 401);
   }
   async singnUp(createUserDto: CreateUserDto) {
-    const { data, err } = await this.userService.create(createUserDto);
-    if (!err) {
-      return { data };
+    try {
+      await this.prismaService.$transaction(async (tx) => {
+        // 测试专用，流程跑通后修改
+        createUserDto.password = await argon2.hash(createUserDto.password); // 加密敏感数据
+        console.log(
+          '🚀 ~ AuthService ~ awaitthis.prismaService.$transaction ~ createUserDto:',
+          createUserDto,
+        );
+        const userData = await tx.user.create({
+          //创建用户,后续需添加加密逻辑
+          data: createUserDto,
+        });
+
+        const roleData = await tx.userRole.create({
+          // 分配默认角色
+          data: {
+            userId: userData.id,
+            roleId: 1,
+          },
+        });
+        await tx.rolePermission.create({
+          // 分配默认权限
+          data: {
+            roleId: roleData.id,
+            permissionId: 1,
+          },
+        });
+      });
+      return {
+        data: [],
+        err: null,
+      };
+    } catch (error) {
+      return {
+        data: null,
+        err: error,
+      };
     }
-    throw new HttpException('服务异常', 400);
   }
 }

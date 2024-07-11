@@ -1,7 +1,10 @@
 model role {
   id              Int              @id @default(autoincrement())
-  name            String           @db.VarChar(50)
+  pid             Int?
+  roleCode        RoleCode?        @default(GUEST) @map("role_code") /// 用户当前角色编码， SUPER_ADMIN 、ADMIN、USER、GUEST
+  name            String           @db.VarChar(50) /// 角色名称
   description     String?          @db.VarChar(50)
+  status          Status?          @default(INACTIVE) ///是否启用该角色
   createdAt       DateTime         @default(now()) @map("created_at")
   updatedAt       DateTime         @updatedAt @map("updated_at")
   userRoles       userRole[]

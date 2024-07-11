@@ -6,10 +6,20 @@ import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
 import { AuthService } from './auth/auth.service';
 import { RolesModule } from './roles/roles.module';
-import { OperationModule } from './operation/operation.module';
+import { MenuModule } from './menu/menu.module';
+import { PermissionModule } from './permission/permission.module';
+import { TtModule } from './tt/tt.module';
 
 @Module({
-  imports: [CommonModule, UserModule, AuthModule, RolesModule, OperationModule],
+  imports: [
+    CommonModule,
+    UserModule,
+    AuthModule,
+    RolesModule,
+    MenuModule,
+    PermissionModule,
+    TtModule,
+  ],
   controllers: [AppController],
   providers: [AppService, AuthService],
 })

@@ -1,45 +1,54 @@
 -- generator-version: 0.0
 
+-- Model menus comments
+
+SET @column_type = ( SELECT column_type FROM information_schema.COLUMNS WHERE table_name = 'menus' AND column_name = 'status' );
+    SET @alter_sql = CONCAT( 'ALTER TABLE menus MODIFY COLUMN status ', @column_type, ' COMMENT ''是否启用该菜单''' );
+    PREPARE alter_statement  FROM @alter_sql;
+    EXECUTE alter_statement;
+    DEALLOCATE PREPARE alter_statement;
+
+
 -- Model permissions comments
 
-
-
--- Model roles comments
-
+SET @column_type = ( SELECT column_type FROM information_schema.COLUMNS WHERE table_name = 'permissions' AND column_name = 'rule_code' );
+    SET @alter_sql = CONCAT( 'ALTER TABLE permissions MODIFY COLUMN rule_code ', @column_type, ' COMMENT ''当前菜单的权限码   VIEW、EDIT、ALL''' );
+    PREPARE alter_statement  FROM @alter_sql;
+    EXECUTE alter_statement;
+    DEALLOCATE PREPARE alter_statement;
 
 
 -- Model role_permission comments
 
-
-
--- Model users comments
-
-SET @column_type = ( SELECT column_type FROM information_schema.COLUMNS WHERE table_name = 'users' AND column_name = 'id' );
-    SET @alter_sql = CONCAT( 'ALTER TABLE users MODIFY COLUMN id ', @column_type, ' COMMENT ''真的有点烦人''' );
-    PREPARE alter_statement  FROM @alter_sql;
-    EXECUTE alter_statement;
-    DEALLOCATE PREPARE alter_statement;
-SET @column_type = ( SELECT column_type FROM information_schema.COLUMNS WHERE table_name = 'users' AND column_name = 'name' );
-    SET @alter_sql = CONCAT( 'ALTER TABLE users MODIFY COLUMN name ', @column_type, ' COMMENT ''真的有点烦人''' );
-    PREPARE alter_statement  FROM @alter_sql;
-    EXECUTE alter_statement;
-    DEALLOCATE PREPARE alter_statement;
-SET @column_type = ( SELECT column_type FROM information_schema.COLUMNS WHERE table_name = 'users' AND column_name = 'email' );
-    SET @alter_sql = CONCAT( 'ALTER TABLE users MODIFY COLUMN email ', @column_type, ' COMMENT ''primaryKey''' );
-    PREPARE alter_statement  FROM @alter_sql;
-    EXECUTE alter_statement;
-    DEALLOCATE PREPARE alter_statement;
-SET @column_type = ( SELECT column_type FROM information_schema.COLUMNS WHERE table_name = 'users' AND column_name = 'created_at' );
-    SET @alter_sql = CONCAT( 'ALTER TABLE users MODIFY COLUMN created_at ', @column_type, ' COMMENT ''真的有点烦人''' );
-    PREPARE alter_statement  FROM @alter_sql;
-    EXECUTE alter_statement;
-    DEALLOCATE PREPARE alter_statement;
-SET @column_type = ( SELECT column_type FROM information_schema.COLUMNS WHERE table_name = 'users' AND column_name = 'updated_at' );
-    SET @alter_sql = CONCAT( 'ALTER TABLE users MODIFY COLUMN updated_at ', @column_type, ' COMMENT ''primaryKey''' );
+SET @column_type = ( SELECT column_type FROM information_schema.COLUMNS WHERE table_name = 'role_permission' AND column_name = 'status' );
+    SET @alter_sql = CONCAT( 'ALTER TABLE role_permission MODIFY COLUMN status ', @column_type, ' COMMENT ''是否启用该条权限''' );
     PREPARE alter_statement  FROM @alter_sql;
     EXECUTE alter_statement;
     DEALLOCATE PREPARE alter_statement;
 
 
 -- Model user_role comments
+
+
+
+-- Model roles comments
+
+SET @column_type = ( SELECT column_type FROM information_schema.COLUMNS WHERE table_name = 'roles' AND column_name = 'role_code' );
+    SET @alter_sql = CONCAT( 'ALTER TABLE roles MODIFY COLUMN role_code ', @column_type, ' COMMENT ''用户当前角色编码， SUPER_ADMIN 、ADMIN、USER、GUEST''' );
+    PREPARE alter_statement  FROM @alter_sql;
+    EXECUTE alter_statement;
+    DEALLOCATE PREPARE alter_statement;
+SET @column_type = ( SELECT column_type FROM information_schema.COLUMNS WHERE table_name = 'roles' AND column_name = 'name' );
+    SET @alter_sql = CONCAT( 'ALTER TABLE roles MODIFY COLUMN name ', @column_type, ' COMMENT ''角色名称''' );
+    PREPARE alter_statement  FROM @alter_sql;
+    EXECUTE alter_statement;
+    DEALLOCATE PREPARE alter_statement;
+SET @column_type = ( SELECT column_type FROM information_schema.COLUMNS WHERE table_name = 'roles' AND column_name = 'status' );
+    SET @alter_sql = CONCAT( 'ALTER TABLE roles MODIFY COLUMN status ', @column_type, ' COMMENT ''是否启用该角色''' );
+    PREPARE alter_statement  FROM @alter_sql;
+    EXECUTE alter_statement;
+    DEALLOCATE PREPARE alter_statement;
+
+
+-- Model users comments
 

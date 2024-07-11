@@ -15,7 +15,7 @@ export class SignUpDto {
 
   @IsString()
   @IsNotEmpty()
-  @Length(6, 20)
+  @Length(6, 50)
   password: string;
 
   @IsEmail()
@@ -23,13 +23,6 @@ export class SignUpDto {
   email: string;
 
   @IsNumber()
-  phone: number;
-
   @IsOptional()
-  @Exclude()
-  createdAt?: Date;
-
-  @IsOptional()
-  @Exclude()
-  updatedAt?: Date;
+  phone?: number;
 }

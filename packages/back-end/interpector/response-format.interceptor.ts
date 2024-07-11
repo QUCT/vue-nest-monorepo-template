@@ -5,7 +5,16 @@ import {
   NestInterceptor,
 } from '@nestjs/common';
 import { map, Observable } from 'rxjs';
-import { ResponseData } from 'shared';
+// import { ResponseData } from 'shared';
+
+export interface ResponseData<T> {
+  data: T;
+  code: number;
+  success: boolean;
+  timestamp: string;
+  method: string;
+  path: string;
+}
 
 // 响应数据格式化拦截器
 @Injectable()

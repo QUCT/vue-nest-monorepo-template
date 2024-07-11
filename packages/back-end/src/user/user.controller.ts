@@ -12,8 +12,7 @@ import {
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { AuthGuard } from '@nestjs/passport';
-import { AdminGuard } from 'guards/admin/admin.guard';
+import { AdminGuard } from 'guards/admin.guard';
 
 @Controller('user')
 export class UserController {
@@ -28,7 +27,6 @@ export class UserController {
   }
 
   @Get('/findAll')
-  @UseGuards(AuthGuard('jwt'))
   findAll() {
     return this.userService.findAll();
   }

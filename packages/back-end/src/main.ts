@@ -10,6 +10,7 @@ import { WinstonModule } from 'nest-winston';
 import { HttpExceptionFilter } from 'filter/http-exception.filter';
 import { getWinstonInstance } from '../utils/createWinstonConfig';
 import { ValidationPipe } from '@nestjs/common';
+import { FormatInterceptor } from 'interpector/response-format.interceptor';
 
 declare const module: any;
 
@@ -37,6 +38,7 @@ async function bootstrap() {
       whitelist: true, // 去除前端传递的多余字段
     }),
   );
+  app.useGlobalInterceptors(new FormatInterceptor());
   app.setGlobalPrefix('api/v1');
   const server: Isever = config.get('server');
   await app.listen(server?.port ?? 3000);

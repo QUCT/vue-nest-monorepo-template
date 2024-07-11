@@ -9,8 +9,26 @@ datasource db {
   relationMode = "prisma" // 关联模式切换为非外键
 }
 
-// generator comments { // 使用脚本生成数据库注释
-//   provider = "ts-node  prisma/schema/commentsGenerator.ts"
-// }
+generator comments {
+  provider = "ts-node  prisma/schema/commentsGenerator.ts"
+}
+
+enum Status {
+  ACTIVE
+  INACTIVE
+}
+
+enum RoleCode {
+  SUPER_ADMIN
+  ADMIN
+  USER
+  GUEST
+}
+
+enum RuleCode {
+  VIEW
+  EDIT
+  ALL
+}
 
 // model 名称一律小写 创建出来的表名才符合规范 字段名一律添加map

@@ -1,10 +1,14 @@
 model menu {
-  id              Int               @id @default(autoincrement())
-  name            String            @unique @db.VarChar(50)
-  pid             Int?              @unique
-  menuPermissions menuPermissions[]
-  createdAt       DateTime          @default(now()) @map("created_at")
-  updatedAt       DateTime          @updatedAt @map("updated_at")
+  id         Int          @id @default(autoincrement())
+  pid        Int?         @unique
+  name       String       @unique @db.VarChar(50)
+  path       String       @unique @db.VarChar(50)
+  order      Int
+  icon       String?
+  status     Status?      @default(INACTIVE) ///是否启用该菜单
+  createdAt  DateTime     @default(now()) @map("created_at")
+  updatedAt  DateTime     @updatedAt @map("updated_at")
+  permission permission[]
 
   @@index([pid])
   @@map("menus")

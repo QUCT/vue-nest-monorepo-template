@@ -1,12 +1,15 @@
-import { Body, Controller, Post, UseInterceptors } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  HttpException,
+  Post,
+  UseInterceptors,
+} from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { SignInAuthDto } from 'src/auth/dto/signin-auth.dto';
-import { CreateUserDto } from 'src/user/dto/create-user.dto';
-import { FormatInterceptor } from 'interpector/response-format.interceptor';
-import { SignUpDto } from './dto/signuo-dto';
+import { SignUpDto } from './dto/signup-dto';
 
 @Controller('auth')
-@UseInterceptors(FormatInterceptor)
 export class AuthController {
   constructor(private authService: AuthService) {}
 
@@ -19,7 +22,10 @@ export class AuthController {
 
   @Post('/signup')
   async signup(@Body() signUpDto: SignUpDto) {
-    const res = await this.authService.singnUp(signUpDto);
-    return res;
+    const { data, err } = await this.authService.singnUp(signUpDto);
+    if (!err) {
+      return { data };
+    }
+    throw new HttpException(err, 400);
   }
 }

@@ -15,7 +15,7 @@ export class CreateUserDto {
 
   @IsString()
   @IsNotEmpty()
-  @Length(6, 20)
+  @Length(6, 50)
   @Exclude() // 过滤敏感数据
   password: string;
 
@@ -24,13 +24,6 @@ export class CreateUserDto {
   email: string;
 
   @IsNumber()
-  phone: number;
-
   @IsOptional()
-  @Exclude()
-  createdAt?: Date;
-
-  @IsOptional()
-  @Exclude()
-  updatedAt?: Date;
+  phone?: number;
 }

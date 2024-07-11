@@ -8,17 +8,13 @@ import {
   Delete,
   HttpException,
   UseGuards,
-  UseInterceptors,
 } from '@nestjs/common';
 import { RolesService } from './roles.service';
 import { CreateRoleDto } from './dto/create-role.dto';
 import { UpdateRoleDto } from './dto/update-role.dto';
-import { FormatInterceptor } from 'interpector/response-format.interceptor';
-// import { AuthGuard } from '@nestjs/passport';
 
 @Controller('roles')
-// @UseGuards(AuthGuard('jwt')) // 开启jwt守卫
-@UseInterceptors(FormatInterceptor)
+// @UseGuards(JwtGuard)
 export class RolesController {
   constructor(private readonly rolesService: RolesService) {}
 
@@ -34,6 +30,7 @@ export class RolesController {
   @Get()
   async findAll() {
     const { data, err } = await this.rolesService.findAll();
+
     if (!err) {
       return { data };
     }
