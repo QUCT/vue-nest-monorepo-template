@@ -5,8 +5,7 @@
 - [介绍](#介绍)
 - [特点](#特点)
 - [技术栈](#技术栈)
-- [安装指南](#安装指南)
-- [使用说明](#使用说明)
+- [安装](#安装)
 - [待办事项](#待办事项)
 - [下一步计划](#下一步计划)
 
@@ -22,7 +21,6 @@
 
 ## 特点
 
-- 基于Typescript+vue3+nestjs+prisma+CASL+monorepo+pnpm架构的全栈开发模板
 - 提供docker-compose及dockerfile便捷的本地调式及部署
 - 基于 RBAC 的权限管理系统，提供细粒度的 API 访问控制，防止越权访问。
 - 采用 monorepo + TypeScript 架构，前端和后端可共享类型定义和方法。shared 包会同时打包为 CommonJS 和 ESM 格式，方便前后端调用。
@@ -39,4 +37,85 @@
 | 数据验证       | class-validator        |
 | 身份验证和授权 | JWT + CASL             |
 
-### 目录结构
+### 快速安装
+
+1、克隆项目到本地
+
+```
+git clone  https://gitee.com/quct/vue-nest-monorepo.git
+```
+
+2、全局安装pnpm
+
+```
+npm install -g pnpm
+```
+
+3、下载docker desktop或者下载mysql、redis到本地<br/>
+
+（此处强烈建议安装docker desktop，配合项目中的docker-compose一键运行mysql、redis）<br/>
+
+docker 安装使用可参考：https://docker.easydoc.net/<br/>
+
+docker desktop安装：https://www.docker.com/products/docker-desktop/<br/>
+
+4、安装docker desktop后进入back-end目录使用命令启动docker
+
+（如果直接使用本地的mysql、redis，请参考back-end目录下的.env文件及config目录下的文件配置数据库）<br/>
+
+```
+cd ./packages/back-end
+
+docker-compose up -d
+```
+
+此命令会根据back-end目录下的docker-compose.yml文件下载启动mysql、redis
+
+5、下载依赖
+
+```
+pnpm install
+```
+
+后续如果想下载全局依赖可执行
+
+```
+ pnpm install xxx -w
+```
+
+如果想给某个包单独安装，比如给back-end安装可使用
+
+```
+pnpm --filter ./packages/back-end i xxxx
+```
+
+6、初始化数据库环境，进入back-end目录执行
+
+```
+    npm run db:init
+```
+
+7、启动项目，在根目录执行命令可启动前后端项目
+
+```
+pnpm run start:all
+```
+
+如果想单独启动后端项目，执行
+
+```
+pnpm --filter ./packages/back-end run start:dev
+```
+
+单独启动前端项目
+
+```
+pnpm --filter ./packages/front-end run dev
+```
+
+后端运行后
+访问http://localhost:3018/swagger 即可查看接口文档<br/>
+访问http://localhost:3018/api/v1/ 即可使用接口服务<br/>
+前端访问http://localhost:5173/
+![alt text](image.png)
+![alt text](image-1.png)
