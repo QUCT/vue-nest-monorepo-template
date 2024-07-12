@@ -134,6 +134,8 @@ pnpm --filter ./packages/front-end run dev
 
 ### 待办事项
 
-[] 提供字典模块
-[] 提供缓存模块
-[] 提供admin前端集成
+[ ] 提供字典模块
+
+[ ] 提供缓存模块
+
+[ ] 提供admin前端集成
