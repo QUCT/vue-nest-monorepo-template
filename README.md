@@ -12,7 +12,7 @@
 
 ## 介绍
 
-基于Typescript+vue3+nestjs+prisma+acsl的monorepo架构的全栈开发模板
+基于Typescript+vue3+nestjs+prisma+CASL的monorepo架构的全栈开发模板
 
 本模板提供了完整的单体应用请求-响应链路，包括日志记录、身份验证、RBAC 控制、API 限流、请求数据序列化和响应数据序列化。
 
@@ -37,4 +37,6 @@
 | 后端           | NestJS                 |
 | 数据库和 ORM   | Prisma + MySQL + Redis |
 | 数据验证       | class-validator        |
-| 身份验证和授权 | JWT + ACSL             |
+| 身份验证和授权 | JWT + CASL             |
+
+### 目录结构
