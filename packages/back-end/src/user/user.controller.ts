@@ -6,8 +6,8 @@ import {
   Patch,
   Param,
   Delete,
-  Logger,
   UseGuards,
+  HttpException,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -18,34 +18,51 @@ import { ApiTags } from '@nestjs/swagger';
 @ApiTags('users')
 @Controller('user')
 export class UserController {
-  constructor(
-    private readonly userService: UserService,
-    // private readonly logger: Logger,
-  ) {}
+  constructor(private readonly userService: UserService) {}
 
   @Post('/create')
-  create(@Body() createUserDto: CreateUserDto) {
-    return this.userService.create(createUserDto);
+  async create(@Body() createUserDto: CreateUserDto) {
+    const { data, err } = await this.userService.create(createUserDto);
+    if (!err) {
+      return { data };
+    }
+    throw new HttpException(err, 400);
   }
 
   @Get('/findAll')
-  findAll() {
-    return this.userService.findAll();
+  async findAll() {
+    const { data, err } = await this.userService.findAll();
+    if (!err) {
+      return { data };
+    }
+    throw new HttpException(err, 400);
   }
 
   @Get(':id')
   @UseGuards(AdminGuard)
-  findOne(@Param('id') id: string) {
-    return this.userService.findOne(id);
+  async findOne(@Param('id') id: string) {
+    const { data, err } = await this.userService.findOne(+id);
+    if (!err) {
+      return { data };
+    }
+    throw new HttpException(err, 400);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    return this.userService.update(+id, updateUserDto);
+  async update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
+    const { data, err } = await this.userService.update(+id, updateUserDto);
+    if (!err) {
+      return { data };
+    }
+    throw new HttpException(err, 400);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.userService.remove(+id);
+  async remove(@Param('id') id: string) {
+    const { data, err } = await this.userService.remove(+id);
+    if (!err) {
+      return { data };
+    }
+    throw new HttpException(err, 400);
   }
 }

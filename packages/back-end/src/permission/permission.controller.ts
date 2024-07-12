@@ -29,25 +29,44 @@ export class PermissionController {
   }
 
   @Get()
-  findAll() {
-    return this.permissionService.findAll();
+  async findAll() {
+    const { data, err } = await this.permissionService.findAll();
+    if (!err) {
+      return { data };
+    }
+    throw new HttpException(err, 400);
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.permissionService.findOne(+id);
+  async findOne(@Param('id') id: string) {
+    const { data, err } = await this.permissionService.findOne(+id);
+    if (!err) {
+      return { data };
+    }
+    throw new HttpException(err, 400);
   }
 
   @Patch(':id')
-  update(
+  async update(
     @Param('id') id: string,
     @Body() updatePermissionDto: UpdatePermissionDto,
   ) {
-    return this.permissionService.update(+id, updatePermissionDto);
+    const { data, err } = await this.permissionService.update(
+      +id,
+      updatePermissionDto,
+    );
+    if (!err) {
+      return { data };
+    }
+    throw new HttpException(err, 400);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.permissionService.remove(+id);
+  async remove(@Param('id') id: string) {
+    const { data, err } = await this.permissionService.remove(+id);
+    if (!err) {
+      return { data };
+    }
+    throw new HttpException(err, 400);
   }
 }

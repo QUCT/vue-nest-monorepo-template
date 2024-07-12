@@ -6,6 +6,7 @@ model menu {
   order      Int
   icon       String?
   status     Status?      @default(INACTIVE) ///是否启用该菜单
+  isSystem   Boolean?     @default(false)
   createdAt  DateTime     @default(now()) @map("created_at")
   updatedAt  DateTime     @updatedAt @map("updated_at")
   permission permission[]

@@ -5,6 +5,9 @@
   "author": "",
   "private": true,
   "license": "UNLICENSED",
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
+  },
   "scripts": {
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
@@ -14,6 +17,7 @@
     "start:prod": "cross-env NODE_ENV=production && node dist/main",
     "start:hot": "cross-env NODE_ENV=development && nest build --webpack --webpackPath webpack-hmr.config.js --watch",
     "db:init": "npx prisma migrate dev --name init",
+    "db:reset": "npx prisma migrate reset --force",
     "db:change": "npx prisma migrate dev --name change-db && npx prisma generate",
     "db:deploy": "prisma migrate deploy",
     "db:comment": "prisma migrate dev && pnpm db:deploy",

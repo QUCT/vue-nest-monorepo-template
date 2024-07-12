@@ -4,6 +4,7 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { PrismaService } from '../../common/service/prisma.service';
 import * as argon2 from 'argon2';
 import { plainToInstance } from 'class-transformer';
+import { QueryUserVo } from './vo/query-user.vo';
 
 @Injectable()
 export class UserService {
@@ -15,8 +16,7 @@ export class UserService {
       const dbData = await this.prismaService.user.create({
         data: createUserDto,
       });
-      const formatData = plainToInstance(CreateUserDto, dbData); // 过滤数据
-
+      const formatData = plainToInstance(QueryUserVo, dbData); // 过滤数据
       return {
         data: formatData,
         err: null,
@@ -30,18 +30,11 @@ export class UserService {
   }
 
   async findAll() {
-    return await this.prismaService.user.findMany();
-  }
-
-  async findOneByEmail(email: string) {
     try {
-      const dbData = await this.prismaService.user.findUnique({
-        where: {
-          email,
-        },
-      });
+      const dbData = await this.prismaService.user.findMany();
+      const formatData = plainToInstance(QueryUserVo, dbData);
       return {
-        data: dbData,
+        data: formatData,
         err: null,
       };
     } catch (error) {
@@ -52,15 +45,84 @@ export class UserService {
     }
   }
 
-  findOne(id: string) {
-    return `This action returns a #${id} user`;
+  async findOneByEmail(email: string) {
+    try {
+      const dbData = await this.prismaService.user.findUnique({
+        where: {
+          email,
+        },
+      });
+      const formatData = plainToInstance(QueryUserVo, dbData);
+      return {
+        data: formatData,
+        err: null,
+      };
+    } catch (error) {
+      return {
+        data: null,
+        err: error,
+      };
+    }
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
+  async findOne(id: number) {
+    try {
+      const dbData = await this.prismaService.user.findUnique({
+        where: {
+          id,
+        },
+      });
+      const formatData = plainToInstance(QueryUserVo, dbData);
+      return {
+        data: formatData,
+        err: null,
+      };
+    } catch (error) {
+      return {
+        data: null,
+        err: error,
+      };
+    }
+  }
+
+  async update(id: number, updateUserDto: UpdateUserDto) {
+    try {
+      const dbData = await this.prismaService.user.update({
+        where: {
+          id,
+        },
+        data: updateUserDto,
+      });
+      const formatData = plainToInstance(QueryUserVo, dbData);
+      return {
+        data: formatData,
+        err: null,
+      };
+    } catch (error) {
+      return {
+        data: null,
+        err: error,
+      };
+    }
   }
 
   remove(id: number) {
-    return `This action removes a #${id} user`;
+    try {
+      const dbData = this.prismaService.user.delete({
+        where: {
+          id,
+        },
+      });
+      const formatData = plainToInstance(QueryUserVo, dbData);
+      return {
+        data: formatData,
+        err: null,
+      };
+    } catch (error) {
+      return {
+        data: null,
+        err: error,
+      };
+    }
   }
 }

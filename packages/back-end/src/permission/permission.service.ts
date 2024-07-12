@@ -3,6 +3,7 @@ import { CreatePermissionDto } from './dto/create-permission.dto';
 import { UpdatePermissionDto } from './dto/update-permission.dto';
 import { PrismaService } from 'common/service/prisma.service';
 import { plainToInstance } from 'class-transformer';
+import { QueryPermissionVo } from './vo/query-permission.vo';
 
 @Injectable()
 export class PermissionService {
@@ -10,10 +11,10 @@ export class PermissionService {
 
   async create(createPermissionDto: CreatePermissionDto) {
     try {
-      const dbData = this.prismaService.permission.create({
+      const dbData = await this.prismaService.permission.create({
         data: createPermissionDto,
       });
-      const formatedData = plainToInstance(CreatePermissionDto, dbData);
+      const formatedData = plainToInstance(QueryPermissionVo, dbData);
       return {
         data: formatedData,
         err: null,
@@ -26,19 +27,73 @@ export class PermissionService {
     }
   }
 
-  findAll() {
-    return `This action returns all permission`;
+  async findAll() {
+    try {
+      const dbData = await this.prismaService.permission.findMany();
+      const formatedData = plainToInstance(QueryPermissionVo, dbData);
+      return {
+        data: formatedData,
+        err: null,
+      };
+    } catch (error) {
+      return {
+        data: null,
+        err: error,
+      };
+    }
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} permission`;
+  async findOne(id: number) {
+    try {
+      const dbData = await this.prismaService.permission.findUnique({
+        where: { id },
+      });
+      const formatedData = plainToInstance(QueryPermissionVo, dbData);
+      return {
+        data: formatedData,
+        err: null,
+      };
+    } catch (error) {
+      return {
+        data: null,
+        err: error,
+      };
+    }
   }
 
-  update(id: number, updatePermissionDto: UpdatePermissionDto) {
-    return `This action updates a #${id} permission`;
+  async update(id: number, updatePermissionDto: UpdatePermissionDto) {
+    try {
+      const dbData = await this.prismaService.permission.update({
+        where: { id },
+        data: updatePermissionDto,
+      });
+      const formatedData = plainToInstance(QueryPermissionVo, dbData);
+      return {
+        data: formatedData,
+        err: null,
+      };
+    } catch (err) {
+      return {
+        data: null,
+        err: err,
+      };
+    }
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} permission`;
+  async remove(id: number) {
+    try {
+      await this.prismaService.permission.delete({
+        where: { id },
+      });
+      return {
+        data: [],
+        err: null,
+      };
+    } catch (error) {
+      return {
+        data: null,
+        err: error,
+      };
+    }
   }
 }

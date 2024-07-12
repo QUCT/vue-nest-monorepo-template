@@ -40,17 +40,29 @@ export class RolesController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.rolesService.findOne(+id);
+  async findOne(@Param('id') id: string) {
+    const { data, err } = await this.rolesService.findOne(+id);
+    if (!err) {
+      return { data };
+    }
+    throw new HttpException(err, 400);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateRoleDto: UpdateRoleDto) {
-    return this.rolesService.update(+id, updateRoleDto);
+  async update(@Param('id') id: string, @Body() updateRoleDto: UpdateRoleDto) {
+    const { data, err } = await this.rolesService.update(+id, updateRoleDto);
+    if (!err) {
+      return { data };
+    }
+    throw new HttpException(err, 400);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.rolesService.remove(+id);
+  async remove(@Param('id') id: string) {
+    const { data, err } = await this.rolesService.remove(+id);
+    if (!err) {
+      return { data };
+    }
+    throw new HttpException(err, 400);
   }
 }

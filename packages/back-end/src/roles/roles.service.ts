@@ -3,6 +3,7 @@ import { CreateRoleDto } from './dto/create-role.dto';
 import { UpdateRoleDto } from './dto/update-role.dto';
 import { PrismaService } from '../../common/service/prisma.service';
 import { plainToInstance } from 'class-transformer';
+import { QueryRoleVo } from './vo/query-role.vo';
 
 @Injectable()
 export class RolesService {
@@ -12,8 +13,9 @@ export class RolesService {
       const dbData = await this.prismaService.role.create({
         data: createRoleDto,
       });
+      const formatData = plainToInstance(QueryRoleVo, dbData);
       return {
-        data: dbData,
+        data: formatData,
         err: null,
       };
     } catch (error) {
@@ -27,7 +29,7 @@ export class RolesService {
   async findAll() {
     try {
       const dbData = await this.prismaService.role.findMany();
-      const formatData = plainToInstance(CreateRoleDto, dbData);
+      const formatData = plainToInstance(QueryRoleVo, dbData);
       return {
         data: formatData,
         err: null,
@@ -40,18 +42,57 @@ export class RolesService {
     }
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} role`;
+  async findOne(id: number) {
+    try {
+      const dbData = await this.prismaService.role.findUnique({
+        where: { id },
+      });
+      const formatData = plainToInstance(QueryRoleVo, dbData);
+      return {
+        data: formatData,
+        err: null,
+      };
+    } catch (error) {
+      return {
+        data: null,
+        err: error,
+      };
+    }
   }
 
-  update(id: number, updateRoleDto: UpdateRoleDto) {
-    return this.prismaService.role.update({
-      where: { id },
-      data: updateRoleDto,
-    });
+  async update(id: number, updateRoleDto: UpdateRoleDto) {
+    try {
+      const dbData = await this.prismaService.role.update({
+        where: { id },
+        data: updateRoleDto,
+      });
+      const formatData = plainToInstance(QueryRoleVo, dbData);
+      return {
+        data: formatData,
+        err: null,
+      };
+    } catch (error) {
+      return {
+        data: null,
+        err: error,
+      };
+    }
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} role`;
+  async remove(id: number) {
+    try {
+      await this.prismaService.role.delete({
+        where: { id },
+      });
+      return {
+        data: [],
+        err: null,
+      };
+    } catch (error) {
+      return {
+        data: null,
+        err: error,
+      };
+    }
   }
 }

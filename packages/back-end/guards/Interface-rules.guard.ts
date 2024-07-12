@@ -13,7 +13,7 @@ type UserData = {
   user: User;
 };
 @Injectable()
-export class CommonRulesGuard implements CanActivate {
+export class InterfaceRulesGuard implements CanActivate {
   constructor(
     private reflector: Reflector,
     private abilityFactory: AbilityFactory,

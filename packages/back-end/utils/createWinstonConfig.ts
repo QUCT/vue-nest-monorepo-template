@@ -2,6 +2,7 @@ import * as winston from 'winston';
 import 'winston-daily-rotate-file';
 import { utilities } from 'nest-winston';
 
+// 创建日志  日志回收时间设定 7d，可调整
 export const getWinstonInstance = () => {
   return winston.createLogger({
     transports: [

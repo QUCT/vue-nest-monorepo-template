@@ -16,15 +16,15 @@ SET @column_type = ( SELECT column_type FROM information_schema.COLUMNS WHERE ta
     PREPARE alter_statement  FROM @alter_sql;
     EXECUTE alter_statement;
     DEALLOCATE PREPARE alter_statement;
+SET @column_type = ( SELECT column_type FROM information_schema.COLUMNS WHERE table_name = 'permissions' AND column_name = 'status' );
+    SET @alter_sql = CONCAT( 'ALTER TABLE permissions MODIFY COLUMN status ', @column_type, ' COMMENT ''是否启用该条权限''' );
+    PREPARE alter_statement  FROM @alter_sql;
+    EXECUTE alter_statement;
+    DEALLOCATE PREPARE alter_statement;
 
 
 -- Model role_permission comments
 
-SET @column_type = ( SELECT column_type FROM information_schema.COLUMNS WHERE table_name = 'role_permission' AND column_name = 'status' );
-    SET @alter_sql = CONCAT( 'ALTER TABLE role_permission MODIFY COLUMN status ', @column_type, ' COMMENT ''是否启用该条权限''' );
-    PREPARE alter_statement  FROM @alter_sql;
-    EXECUTE alter_statement;
-    DEALLOCATE PREPARE alter_statement;
 
 
 -- Model user_role comments

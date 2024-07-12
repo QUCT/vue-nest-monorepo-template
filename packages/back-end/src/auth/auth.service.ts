@@ -5,6 +5,7 @@ import { UserService } from 'src/user/user.service';
 import * as argon2 from 'argon2';
 import { plainToInstance } from 'class-transformer';
 import { PrismaService } from 'common/service/prisma.service';
+import { QueryAuthVo } from './vo/query-auth.vo';
 
 @Injectable()
 export class AuthService {
@@ -24,28 +25,20 @@ export class AuthService {
           sub: id,
         });
         return {
-          data: plainToInstance(CreateUserDto, data),
+          data: plainToInstance(QueryAuthVo, data),
           token,
         };
       }
-      throw new HttpException('当前用户密码错误', 401);
+      throw new HttpException('当前用户账号/密码错误', 400);
     }
 
     throw new HttpException('当前用户不存在', 400);
-
-    // throw new HttpException('当前用户密码不正确', 401);
   }
   async singnUp(createUserDto: CreateUserDto) {
     try {
       await this.prismaService.$transaction(async (tx) => {
-        // 测试专用，流程跑通后修改
         createUserDto.password = await argon2.hash(createUserDto.password); // 加密敏感数据
-        console.log(
-          '🚀 ~ AuthService ~ awaitthis.prismaService.$transaction ~ createUserDto:',
-          createUserDto,
-        );
         const userData = await tx.user.create({
-          //创建用户,后续需添加加密逻辑
           data: createUserDto,
         });
 
@@ -53,7 +46,7 @@ export class AuthService {
           // 分配默认角色
           data: {
             userId: userData.id,
-            roleId: 1,
+            roleId: 2, // 默认管理员
           },
         });
         await tx.rolePermission.create({

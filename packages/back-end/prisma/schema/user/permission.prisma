@@ -5,6 +5,7 @@ model permission {
   menu            menu             @relation(fields: [menuId], references: [id])
   menuId          Int              @map("menu_id")
   status          Status?          @default(INACTIVE) ///是否启用该条权限
+  isSystem        Boolean?         @default(false)
   rolePermissions rolePermission[]
   createdAt       DateTime         @default(now()) @map("created_at")
   updatedAt       DateTime         @updatedAt @map("updated_at")
