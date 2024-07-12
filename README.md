@@ -1,13 +1,13 @@
-# vue-nest-monorepo
+# vue-nest-monorepo-template
 
 ## 目录
 
 - [介绍](#介绍)
 - [特点](#特点)
 - [技术栈](#技术栈)
+- [已实现模块](#已实现模块)
 - [安装](#安装)
 - [待办事项](#待办事项)
-- [下一步计划](#下一步计划)
 
 ## 介绍
 
@@ -36,6 +36,18 @@
 | 数据库和 ORM   | Prisma + MySQL + Redis |
 | 数据验证       | class-validator        |
 | 身份验证和授权 | JWT + CASL             |
+| 数据加密       | argon2                 |
+
+## 已实现模块
+
+| 模块     | 进度 |
+| -------- | ---- |
+| 注册登录 | 100% |
+| 菜单管理 | 100% |
+| 角色管理 | 100% |
+| 权限管理 | 100% |
+| 日志模块 | 100% |
+| 字典管理 | 0%   |
 
 ### 快速安装
 
@@ -119,3 +131,9 @@ pnpm --filter ./packages/front-end run dev
 前端访问http://localhost:5173/
 ![alt text](image.png)
 ![alt text](image-1.png)
+
+### 待办事项
+
+[] 提供字典模块
+[] 提供缓存模块
+[] 提供admin前端集成
