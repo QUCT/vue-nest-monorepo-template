@@ -12,18 +12,18 @@
 
 ## 介绍
 
-基于Typescript+vue3+nestjs+prisma+CASL的monorepo架构的全栈开发模板
+最简单的开箱即用的nodejs前后端开发模板/脚手架，可快速开发应用，对前端同学友好。
 
-本模板提供了完整的单体应用请求-响应链路，包括日志记录、身份验证、RBAC 控制、API 限流、请求数据序列化和响应数据序列化。
+后端：nest restful api 提供了完整的单体应用请求-响应链路，包括日志记录、身份验证、RBAC 控制、API 限流、请求数据序列化和响应数据序列化。
 
-提供docker-compose及dockerfile便捷的本地调式及部署
+前端：通过pnpm workspace与后端nest应用实现了方法及类型共享，可快速切换各种应用
 
 项目旨在为有兴趣转向后端或全栈开发的前端同学提供参考和使用。
 
-**注意：** 本项目目前仍在开发中。
-
 ## 特点
 
+- 基于Typescript+vue3+nestjs+prisma+CASL+monorepo+pnpm架构的全栈开发模板
+- 提供docker-compose及dockerfile便捷的本地调式及部署
 - 基于 RBAC 的权限管理系统，提供细粒度的 API 访问控制，防止越权访问。
 - 采用 monorepo + TypeScript 架构，前端和后端可共享类型定义和方法。shared 包会同时打包为 CommonJS 和 ESM 格式，方便前后端调用。
 - 使用 Prisma 快速构建数据库模型，并解决了 Prisma 无法使用 comment 描述字段入库的问题。
