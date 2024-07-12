@@ -23,8 +23,8 @@
 
 - 提供docker-compose及dockerfile便捷的本地调式及部署
 - 基于 RBAC 的权限管理系统，提供细粒度的 API 访问控制，防止越权访问。
-- 采用 monorepo + TypeScript 架构，前端和后端可共享类型定义和方法。shared 包会同时打包为 CommonJS 和 ESM 格式，方便前后端调用。
-- 使用 Prisma 快速构建数据库模型，并解决了 Prisma 无法使用 comment 描述字段入库的问题。
+- 采用 Monorepo + TypeScript 架构，前端和后端可共享类型定义和方法。shared 包会同时打包为 CommonJS 和 ESM 格式，方便前后端调用。
+- 使用 Prisma 快速构建数据库模型，并解决了 Prisma 无法使用 @Comment 描述字段入库的问题。
 - 提供 Swagger UI 文档，方便 API 调试和文档管理。
 
 ## 技术栈
@@ -34,9 +34,9 @@
 | 前端           | Vue 3 + Vite           |
 | 后端           | NestJS                 |
 | 数据库和 ORM   | Prisma + MySQL + Redis |
-| 数据验证       | class-validator        |
-| 身份验证和授权 | JWT + CASL             |
-| 数据加密       | argon2                 |
+| 数据验证       | Class Validator        |
+| 身份验证和授权 | JWT + Casl             |
+| 数据加密       | Argon2                 |
 
 ## 已实现模块
 
