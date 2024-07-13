@@ -28,6 +28,7 @@ export class FormatInterceptor implements NestInterceptor {
           method: response.method,
           path: response.path,
           success: true,
+          message: '成功',
           timestamp: new Date().toISOString(),
           ...data,
         };

@@ -1,6 +1,6 @@
 import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
-import { PrismaService } from 'common/service/prisma.service';
+import { PrismaService } from '../common/service/prisma.service';
 import { FastifyRequest } from 'fastify/types/request';
 import { AbilityFactory } from 'src/auth/ability.factory';
 

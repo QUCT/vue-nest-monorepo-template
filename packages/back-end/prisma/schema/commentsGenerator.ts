@@ -24,7 +24,6 @@ import { createHash } from 'crypto';
 import { Prisma } from '@prisma/client';
 
 // import { parseEnvValue } from '@prisma/client';
-//@ts-ignore
 import { GeneratorOptions, generatorHandler } from '@prisma/generator-helper';
 import { snakeCase } from 'lodash';
 

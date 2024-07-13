@@ -1,5 +1,4 @@
-import { RoleCode, RuleCode } from '@prisma/client';
-import { Exclude } from 'class-transformer';
+import { RuleCode } from '@prisma/client';
 import {
   IsNumber,
   IsOptional,
@@ -8,7 +7,6 @@ import {
   IsNotEmpty,
   Length,
 } from 'class-validator';
-import { Status } from 'common/interface';
 
 export class CreatePermissionDto {
   @IsNumber()

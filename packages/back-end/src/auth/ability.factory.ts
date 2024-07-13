@@ -2,7 +2,7 @@
 import { Injectable } from '@nestjs/common';
 
 import { AbilityBuilder, PureAbility } from '@casl/ability';
-import { PrismaService } from 'common/service/prisma.service';
+import { PrismaService } from '../common/service/prisma.service';
 import { createPrismaAbility, PrismaQuery } from '@casl/prisma';
 import { flatten } from 'lodash';
 
@@ -19,9 +19,7 @@ export class AbilityFactory {
   constructor(private prisma: PrismaService) {}
 
   async defineAbility(userId: number, action: string): Promise<AppAbility> {
-    const { can, cannot, build } = new AbilityBuilder<AppAbility>(
-      createPrismaAbility,
-    );
+    const { can, build } = new AbilityBuilder<AppAbility>(createPrismaAbility);
 
     const userRoles = await this.prisma.userRole.findMany({
       where: { userId: userId },

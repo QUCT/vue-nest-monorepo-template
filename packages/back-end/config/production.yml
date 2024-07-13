@@ -9,3 +9,4 @@ redis:
   host: 'hw.prod.toimc.com'
   port: 43006
   password: 'n85Arxyl75Uiwv1jXmiL5opOmgvznJX9'
+  username: 'default'

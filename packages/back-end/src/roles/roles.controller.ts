@@ -7,16 +7,21 @@ import {
   Param,
   Delete,
   HttpException,
+  UseGuards,
   // UseGuards,
 } from '@nestjs/common';
 import { RolesService } from './roles.service';
 import { CreateRoleDto } from './dto/create-role.dto';
 import { UpdateRoleDto } from './dto/update-role.dto';
 import { ApiTags } from '@nestjs/swagger';
+import { ControllerPrefix } from 'src/decorator/controller-prefix.decorator';
+import { InterfaceRulesGuard } from 'src/guards/Interface-rules.guard';
+import { JwtGuard } from 'src/guards/jwt.guard';
 
 @ApiTags('roles')
 @Controller('roles')
-// @UseGuards(JwtGuard)
+@ControllerPrefix('roles') // 配合权限控制使用
+@UseGuards(JwtGuard, InterfaceRulesGuard)
 export class RolesController {
   constructor(private readonly rolesService: RolesService) {}
 

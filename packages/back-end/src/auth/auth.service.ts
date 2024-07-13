@@ -2,10 +2,13 @@ import { HttpException, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { CreateUserDto } from 'src/user/dto/create-user.dto';
 import { UserService } from 'src/user/user.service';
-import * as argon2 from 'argon2';
 import { plainToInstance } from 'class-transformer';
-import { PrismaService } from 'common/service/prisma.service';
+import { PrismaService } from '../common/service/prisma.service';
 import { QueryAuthVo } from './vo/query-auth.vo';
+import { AppCacheService } from 'src/cache/cache.service';
+import * as argon2 from 'argon2';
+import * as svgCaptcha from 'svg-captcha';
+import * as crypto from 'crypto';
 
 @Injectable()
 export class AuthService {
@@ -13,6 +16,7 @@ export class AuthService {
     private userService: UserService,
     private jwt: JwtService,
     private prismaService: PrismaService,
+    private appCacheService: AppCacheService,
   ) {}
   async singnIn(email: string, password: string) {
     const { data, err } = await this.userService.findOneByEmail(email);
@@ -24,6 +28,7 @@ export class AuthService {
           username: name,
           sub: id,
         });
+        await this.appCacheService.cacheSet('test', 'hello');
         return {
           data: plainToInstance(QueryAuthVo, data),
           token,
@@ -59,6 +64,26 @@ export class AuthService {
       });
       return {
         data: [],
+        err: null,
+      };
+    } catch (error) {
+      return {
+        data: null,
+        err: error,
+      };
+    }
+  }
+
+  async createImgCode() {
+    try {
+      const captcha = svgCaptcha.create();
+      const randomKey = crypto.randomBytes(16).toString('hex');
+      await this.appCacheService.cacheSet(randomKey, captcha.text);
+      return {
+        data: {
+          img: captcha.data,
+          key: randomKey,
+        },
         err: null,
       };
     } catch (error) {

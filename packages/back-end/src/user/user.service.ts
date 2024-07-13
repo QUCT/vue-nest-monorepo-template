@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { PrismaService } from '../../common/service/prisma.service';
+import { PrismaService } from '../common/service/prisma.service';
 import * as argon2 from 'argon2';
 import { plainToInstance } from 'class-transformer';
 import { QueryUserVo } from './vo/query-user.vo';
@@ -52,9 +52,8 @@ export class UserService {
           email,
         },
       });
-      const formatData = plainToInstance(QueryUserVo, dbData);
       return {
-        data: formatData,
+        data: dbData,
         err: null,
       };
     } catch (error) {

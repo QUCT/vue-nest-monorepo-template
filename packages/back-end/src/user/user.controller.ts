@@ -12,11 +12,16 @@ import {
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { AdminGuard } from 'guards/admin.guard';
+// import { AdminGuard } from 'src/guards/admin.guard';
 import { ApiTags } from '@nestjs/swagger';
+import { ControllerPrefix } from 'src/decorator/controller-prefix.decorator';
+import { InterfaceRulesGuard } from 'src/guards/Interface-rules.guard';
+import { JwtGuard } from 'src/guards/jwt.guard';
 
 @ApiTags('users')
 @Controller('user')
+@ControllerPrefix('roles') // 配合权限控制使用
+@UseGuards(JwtGuard, InterfaceRulesGuard)
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
@@ -39,7 +44,6 @@ export class UserController {
   }
 
   @Get(':id')
-  @UseGuards(AdminGuard)
   async findOne(@Param('id') id: string) {
     const { data, err } = await this.userService.findOne(+id);
     if (!err) {

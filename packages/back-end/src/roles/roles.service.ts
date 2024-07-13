@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { CreateRoleDto } from './dto/create-role.dto';
 import { UpdateRoleDto } from './dto/update-role.dto';
-import { PrismaService } from '../../common/service/prisma.service';
+import { PrismaService } from '../common/service/prisma.service';
 import { plainToInstance } from 'class-transformer';
 import { QueryRoleVo } from './vo/query-role.vo';
 

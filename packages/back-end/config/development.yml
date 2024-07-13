@@ -8,4 +8,5 @@ jwt:
 redis:
   host: 'localhost'
   port: 6379
-  password: 'ai0xbhc2112io434'
+  password: '123456'
+  username: 'default'

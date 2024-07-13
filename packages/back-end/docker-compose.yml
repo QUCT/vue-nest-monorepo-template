@@ -10,7 +10,7 @@ services:
     environment:
       - REDIS_PASSWORD=${REDIS_PASSWORD}
     volumes:
-      - redis-data:/data # 使用 Docker 卷
+      - redis-data:/data
     deploy:
       resources:
         limits:

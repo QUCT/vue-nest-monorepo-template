@@ -5,12 +5,12 @@ import {
   FastifyAdapter,
   NestFastifyApplication,
 } from '@nestjs/platform-fastify';
-import { Isever } from 'common/interface';
+import { Isever } from 'src/common/interface';
 import { WinstonModule } from 'nest-winston';
-import { HttpExceptionFilter } from 'filter/http-exception.filter';
+import { HttpExceptionFilter } from 'src/filter/http-exception.filter';
 import { getWinstonInstance } from '../utils/createWinstonConfig';
 import { ValidationPipe } from '@nestjs/common';
-import { FormatInterceptor } from 'interpector/response-format.interceptor';
+import { FormatInterceptor } from 'src/interpector/response-format.interceptor';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 
 declare const module: any;

@@ -3,6 +3,13 @@ export interface Isever {
   host: string;
 }
 
+export interface Iredis {
+  host: string;
+  port: number;
+  password: string;
+  username: string;
+}
+
 export interface Ijwt {
   secret: string;
 }
@@ -12,14 +19,14 @@ export enum Status {
   INACTIVE = 'INACTIVE',
 }
 
-enum RoleCode {
+export enum RoleCode {
   SUPER_ADMIN = 'SUPER_ADMIN',
   ADMIN = 'ADMIN',
   USER = 'USER',
   GUEST = 'GUEST',
 }
 
-enum RuleCode {
+export enum RuleCode {
   VIEW = 'VIEW',
   EDIT = 'EDIT',
   ALL = 'ALL',

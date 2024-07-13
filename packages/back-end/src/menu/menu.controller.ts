@@ -7,15 +7,14 @@ import {
   Param,
   Delete,
   UseGuards,
-  UseInterceptors,
   HttpException,
 } from '@nestjs/common';
 import { MenuService } from './menu.service';
 import { CreateMenuDto } from './dto/create-menu.dto';
 import { UpdateMenuDto } from './dto/update-menu.dto';
-import { JwtGuard } from 'guards/jwt.guard';
-import { InterfaceRulesGuard } from 'guards/Interface-rules.guard';
-import { ControllerPrefix } from 'decorator/controller-prefix.decorator';
+import { JwtGuard } from 'src/guards/jwt.guard';
+import { InterfaceRulesGuard } from 'src/guards/Interface-rules.guard';
+import { ControllerPrefix } from 'src/decorator/controller-prefix.decorator';
 import { ApiTags } from '@nestjs/swagger';
 
 @ApiTags('menu')
