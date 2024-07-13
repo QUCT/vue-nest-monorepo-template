@@ -17,9 +17,11 @@ export class AuthService {
     private jwt: JwtService,
     private prismaService: PrismaService,
     private appCacheService: AppCacheService,
-  ) {}
-  async singnIn(email: string, password: string) {
-    const { data, err } = await this.userService.findOneByEmail(email);
+  ) {
+    svgCaptcha.options.height = 40;
+  }
+  async singnIn(name: string, password: string) {
+    const { data, err } = await this.userService.findOneByName(name);
     if (!err) {
       const { password: correctPwd, name, id } = data;
       const isPwdValidator = await argon2.verify(correctPwd, password);
@@ -82,7 +84,7 @@ export class AuthService {
       return {
         data: {
           img: captcha.data,
-          key: randomKey,
+          captchaKey: randomKey,
         },
         err: null,
       };

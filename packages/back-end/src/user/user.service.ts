@@ -45,11 +45,11 @@ export class UserService {
     }
   }
 
-  async findOneByEmail(email: string) {
+  async findOneByName(name: string) {
     try {
       const dbData = await this.prismaService.user.findUnique({
         where: {
-          email,
+          name,
         },
       });
       return {

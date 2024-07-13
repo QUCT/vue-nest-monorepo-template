@@ -9,7 +9,7 @@ import {
 export class SignUpDto {
   @IsString()
   @IsNotEmpty()
-  @Length(6, 20)
+  @Length(4, 20)
   name: string;
 
   @IsString()
@@ -18,8 +18,8 @@ export class SignUpDto {
   password: string;
 
   @IsEmail()
-  @IsNotEmpty()
-  email: string;
+  @IsOptional()
+  email?: string;
 
   @IsNumber()
   @IsOptional()

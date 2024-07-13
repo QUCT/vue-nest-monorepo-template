@@ -1,7 +1,7 @@
 model user {
   id        Int        @id @default(autoincrement())
-  name      String     @db.VarChar(50)
-  email     String     @unique @db.VarChar(20)
+  name      String     @db.VarChar(50) @unique()
+  email     String?     @unique @db.VarChar(20)
   password  String     @db.VarChar(150)
   phone     BigInt?
   isSystem  Boolean?   @default(false)
