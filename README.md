@@ -13,11 +13,15 @@
 
 最简单的开箱即用的nodejs前后端开发模板/脚手架，可快速开发应用，对前端同学友好。
 
+v3-admin-vite：https://github.com/un-pany/v3-admin-vite
+
 后端：nest restful api 提供了完整的单体应用请求-响应链路，包括日志记录、身份验证、RBAC 控制、API 限流、请求数据序列化和响应数据序列化。
 
 前端：通过pnpm workspace与后端nest应用实现了方法及类型共享，可快速切换各种应用
 
 项目旨在为有兴趣转向后端或全栈开发的前端同学提供参考和使用。
+
+# 内置基于 v3-admin-vite的前端模板，开箱即用。使用admin模板切换dev-amin分支。
 
 ## 特点
 
@@ -134,8 +138,8 @@ pnpm --filter ./packages/front-end run dev
 
 ### 待办事项
 
-[ ] 提供字典模块
+[] 提供字典模块
 
-[ ] 提供缓存模块
+[√] 提供缓存模块
 
 [ ] 提供admin前端集成
