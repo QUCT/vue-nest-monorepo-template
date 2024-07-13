@@ -10,6 +10,7 @@ export class AppCacheService {
   }
 
   async cacheGet(key: string) {
-    return await this.cacheManage.get(key);
+    const data: string = (await this.cacheManage.get(key)) || '';
+    return data;
   }
 }

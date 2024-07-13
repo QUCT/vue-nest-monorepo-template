@@ -18,14 +18,14 @@ import { ControllerPrefix } from 'src/decorator/controller-prefix.decorator';
 import { InterfaceRulesGuard } from 'src/guards/Interface-rules.guard';
 import { JwtGuard } from 'src/guards/jwt.guard';
 
-@ApiTags('users')
+@ApiTags('user')
 @Controller('user')
-@ControllerPrefix('roles') // 配合权限控制使用
+@ControllerPrefix('user') // 配合权限控制使用
 @UseGuards(JwtGuard, InterfaceRulesGuard)
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
-  @Post('/create')
+  @Post('')
   async create(@Body() createUserDto: CreateUserDto) {
     const { data, err } = await this.userService.create(createUserDto);
     if (!err) {
@@ -34,7 +34,7 @@ export class UserController {
     throw new HttpException(err, 400);
   }
 
-  @Get('/findAll')
+  @Get('')
   async findAll() {
     const { data, err } = await this.userService.findAll();
     if (!err) {

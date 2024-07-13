@@ -9,6 +9,7 @@ import { AppCacheService } from 'src/cache/cache.service';
 import * as argon2 from 'argon2';
 import * as svgCaptcha from 'svg-captcha';
 import * as crypto from 'crypto';
+import { SignInAuthDto } from './dto/signin-auth.dto';
 
 @Injectable()
 export class AuthService {
@@ -20,17 +21,24 @@ export class AuthService {
   ) {
     svgCaptcha.options.height = 40;
   }
-  async singnIn(name: string, password: string) {
+  async singnIn(signInAuthDto: SignInAuthDto) {
+    const { name, code, captchaKey, password } = signInAuthDto;
     const { data, err } = await this.userService.findOneByName(name);
     if (!err) {
       const { password: correctPwd, name, id } = data;
       const isPwdValidator = await argon2.verify(correctPwd, password);
       if (isPwdValidator) {
+        const corrextCaptcha = await this.appCacheService.cacheGet(captchaKey);
+        if (!corrextCaptcha) {
+          throw new HttpException('验证码已过期', 400);
+        }
+        if (code.toLowerCase() !== corrextCaptcha?.toLowerCase()) {
+          throw new HttpException('验证码错误', 400);
+        }
         const token = await this.jwt.signAsync({
           username: name,
           sub: id,
         });
-        await this.appCacheService.cacheSet('test', 'hello');
         return {
           data: plainToInstance(QueryAuthVo, data),
           token,
