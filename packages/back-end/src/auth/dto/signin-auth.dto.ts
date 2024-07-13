@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString, Length } from 'class-validator';
+import { IsNotEmpty, IsOptional, IsString, Length } from 'class-validator';
 export class SignInAuthDto {
   @IsString()
   @IsNotEmpty()
@@ -11,9 +11,11 @@ export class SignInAuthDto {
 
   @IsString()
   @IsNotEmpty()
-  code: string;
+  @IsOptional()
+  code?: string;
 
   @IsString()
   @IsNotEmpty()
-  captchaKey: string;
+  @IsOptional()
+  captchaKey?: string;
 }
