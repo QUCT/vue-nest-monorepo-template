@@ -1,4 +1,10 @@
-import { IsNotEmpty, IsOptional, IsString, Length } from 'class-validator';
+import {
+  IsEmail,
+  IsNotEmpty,
+  IsOptional,
+  IsString,
+  Length,
+} from 'class-validator';
 export class SignInAuthDto {
   @IsString()
   @IsNotEmpty()
@@ -8,6 +14,10 @@ export class SignInAuthDto {
   @Length(4, 20)
   @IsNotEmpty()
   name: string;
+
+  @IsEmail()
+  @IsOptional()
+  email?: string;
 
   @IsString()
   @IsNotEmpty()

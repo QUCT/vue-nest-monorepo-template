@@ -70,8 +70,23 @@ export class UserService {
         where: {
           id,
         },
+        include: {
+          userRoles: {
+            include: {
+              role: true,
+            },
+          },
+        },
       });
-      const formatData = plainToInstance(QueryUserVo, dbData);
+      const roles = dbData.userRoles.map((ele) => {
+        return ele.role.roleCode.toLowerCase();
+      });
+      const tempData = {
+        ...dbData,
+        roles,
+      };
+      const formatData = plainToInstance(QueryUserVo, tempData);
+
       return {
         data: formatData,
         err: null,
