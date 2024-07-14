@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { useDevice } from "@/hooks/useDevice"
+import { useDevice } from '@/hooks/useDevice'
 
 interface Props {
   total: number

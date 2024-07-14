@@ -1,6 +1,6 @@
-import { type VNode, cloneVNode, createVNode, defineComponent, h, KeepAlive } from "vue"
-import { useRoute } from "vue-router"
-import { useTagsViewStore } from "@/store/modules/tags-view"
+import { type VNode, cloneVNode, createVNode, defineComponent, h, KeepAlive } from 'vue'
+import { useRoute } from 'vue-router'
+import { useTagsViewStore } from '@/store/modules/tags-view'
 
 interface CompConsumerProps {
   component: VNode
@@ -61,7 +61,7 @@ export const CompConsumer = defineComponent(
     }
   },
   {
-    name: "CompConsumer",
-    props: ["component"]
+    name: 'CompConsumer',
+    props: ['component']
   }
 )

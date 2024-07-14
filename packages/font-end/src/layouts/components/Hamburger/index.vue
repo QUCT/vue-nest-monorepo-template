@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { Expand, Fold } from "@element-plus/icons-vue"
+import { Expand, Fold } from '@element-plus/icons-vue'
 
 interface Props {
   isActive?: boolean
@@ -15,7 +15,7 @@ const emit = defineEmits<{
 }>()
 
 const toggleClick = () => {
-  emit("toggleClick")
+  emit('toggleClick')
 }
 </script>
 

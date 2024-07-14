@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import { computed } from "vue"
-import { type RouteRecordRaw } from "vue-router"
-import SidebarItemLink from "./SidebarItemLink.vue"
-import { isExternal } from "@/utils/validate"
-import path from "path-browserify"
+import { computed } from 'vue'
+import { type RouteRecordRaw } from 'vue-router'
+import SidebarItemLink from './SidebarItemLink.vue'
+import { isExternal } from '@/utils/validate'
+import path from 'path-browserify'
 
 interface Props {
   item: RouteRecordRaw
@@ -11,7 +11,7 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  basePath: ""
+  basePath: ''
 })
 
 /** 是否始终显示根菜单 */
@@ -36,7 +36,7 @@ const theOnlyOneChild = computed(() => {
     case number === 1:
       return showingChildren.value[0]
     default:
-      return { ...props.item, path: "" }
+      return { ...props.item, path: '' }
   }
 })
 
@@ -58,7 +58,11 @@ const resolvePath = (routePath: string) => {
     <SidebarItemLink v-if="theOnlyOneChild.meta" :to="resolvePath(theOnlyOneChild.path)">
       <el-menu-item :index="resolvePath(theOnlyOneChild.path)">
         <SvgIcon v-if="theOnlyOneChild.meta.svgIcon" :name="theOnlyOneChild.meta.svgIcon" />
-        <component v-else-if="theOnlyOneChild.meta.elIcon" :is="theOnlyOneChild.meta.elIcon" class="el-icon" />
+        <component
+          v-else-if="theOnlyOneChild.meta.elIcon"
+          :is="theOnlyOneChild.meta.elIcon"
+          class="el-icon"
+        />
         <template v-if="theOnlyOneChild.meta.title" #title>
           {{ theOnlyOneChild.meta.title }}
         </template>

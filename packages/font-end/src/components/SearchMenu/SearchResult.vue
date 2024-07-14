@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { getCurrentInstance, onBeforeMount, onBeforeUnmount, onMounted, ref } from "vue"
-import { type RouteRecordName, type RouteRecordRaw } from "vue-router"
+import { getCurrentInstance, onBeforeMount, onBeforeUnmount, onMounted, ref } from 'vue'
+import { type RouteRecordName, type RouteRecordRaw } from 'vue-router'
 
 interface Props {
   list: RouteRecordRaw[]
@@ -18,8 +18,8 @@ const scrollbarHeight = ref<number>(0)
 const itemStyle = (item: RouteRecordRaw) => {
   const flag = item.name === modelValue.value
   return {
-    background: flag ? "var(--el-color-primary)" : "",
-    color: flag ? "#ffffff" : ""
+    background: flag ? 'var(--el-color-primary)' : '',
+    color: flag ? '#ffffff' : ''
   }
 }
 
@@ -47,7 +47,7 @@ const getScrollTop = (index: number) => {
 
 /** 在组件挂载前添加窗口大小变化事件监听器 */
 onBeforeMount(() => {
-  window.addEventListener("resize", getScrollbarHeight)
+  window.addEventListener('resize', getScrollbarHeight)
 })
 
 /** 在组件挂载时立即计算滚动可视区高度 */
@@ -57,7 +57,7 @@ onMounted(() => {
 
 /** 在组件卸载前移除窗口大小变化事件监听器 */
 onBeforeUnmount(() => {
-  window.removeEventListener("resize", getScrollbarHeight)
+  window.removeEventListener('resize', getScrollbarHeight)
 })
 
 defineExpose({ getScrollTop })

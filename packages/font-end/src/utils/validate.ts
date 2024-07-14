@@ -1,11 +1,13 @@
 /** 判断是否为数组 */
 export const isArray = (arg: unknown) => {
-  return Array.isArray ? Array.isArray(arg) : Object.prototype.toString.call(arg) === "[object Array]"
+  return Array.isArray
+    ? Array.isArray(arg)
+    : Object.prototype.toString.call(arg) === '[object Array]'
 }
 
 /** 判断是否为字符串 */
 export const isString = (str: unknown) => {
-  return typeof str === "string" || str instanceof String
+  return typeof str === 'string' || str instanceof String
 }
 
 /** 判断是否为外链 */
@@ -16,7 +18,8 @@ export const isExternal = (path: string) => {
 
 /** 判断是否为网址（带协议） */
 export const isUrl = (url: string) => {
-  const reg = /^(((ht|f)tps?):\/\/)?([^!@#$%^&*?.\s-]([^!@#$%^&*?.\s]{0,63}[^!@#$%^&*?.\s])?\.)+[a-z]{2,6}\/?/
+  const reg =
+    /^(((ht|f)tps?):\/\/)?([^!@#$%^&*?.\s-]([^!@#$%^&*?.\s]{0,63}[^!@#$%^&*?.\s])?\.)+[a-z]{2,6}\/?/
   return reg.test(url)
 }
 

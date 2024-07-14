@@ -1,4 +1,4 @@
-import { ref, onMounted } from "vue"
+import { ref, onMounted } from 'vue'
 
 type OptionValue = string | number
 
@@ -22,7 +22,7 @@ export function useFetchSelect(props: FetchSelectProps) {
 
   const loading = ref<boolean>(false)
   const options = ref<SelectOption[]>([])
-  const value = ref<OptionValue>("")
+  const value = ref<OptionValue>('')
 
   /** 调用接口获取数据 */
   const loadData = () => {

@@ -1,10 +1,10 @@
-import { ref } from "vue"
-import store from "@/store"
-import { defineStore } from "pinia"
-import { type RouteRecordRaw } from "vue-router"
-import { constantRoutes, dynamicRoutes } from "@/router"
-import { flatMultiLevelRoutes } from "@/router/helper"
-import routeSettings from "@/config/route"
+import { ref } from 'vue'
+import store from '@/store'
+import { defineStore } from 'pinia'
+import { type RouteRecordRaw } from 'vue-router'
+import { constantRoutes, dynamicRoutes } from '@/router'
+import { flatMultiLevelRoutes } from '@/router/helper'
+import routeSettings from '@/config/route'
 
 const hasPermission = (roles: string[], route: RouteRecordRaw) => {
   const routeRoles = route.meta?.roles
@@ -25,7 +25,7 @@ const filterDynamicRoutes = (routes: RouteRecordRaw[], roles: string[]) => {
   return res
 }
 
-export const usePermissionStore = defineStore("permission", () => {
+export const usePermissionStore = defineStore('permission', () => {
   /** 可访问的路由 */
   const routes = ref<RouteRecordRaw[]>([])
   /** 有访问权限的动态路由 */
@@ -44,7 +44,9 @@ export const usePermissionStore = defineStore("permission", () => {
 
   const _set = (accessedRoutes: RouteRecordRaw[]) => {
     routes.value = constantRoutes.concat(accessedRoutes)
-    addRoutes.value = routeSettings.thirdLevelRouteCache ? flatMultiLevelRoutes(accessedRoutes) : accessedRoutes
+    addRoutes.value = routeSettings.thirdLevelRouteCache
+      ? flatMultiLevelRoutes(accessedRoutes)
+      : accessedRoutes
   }
 
   return { routes, addRoutes, setRoutes, setAllRoutes }

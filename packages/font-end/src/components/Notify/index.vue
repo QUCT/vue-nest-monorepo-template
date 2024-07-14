@@ -1,15 +1,15 @@
 <script lang="ts" setup>
-import { ref, computed } from "vue"
-import { ElMessage } from "element-plus"
-import { Bell } from "@element-plus/icons-vue"
-import NotifyList from "./NotifyList.vue"
-import { type ListItem, notifyData, messageData, todoData } from "./data"
+import { ref, computed } from 'vue'
+import { ElMessage } from 'element-plus'
+import { Bell } from '@element-plus/icons-vue'
+import NotifyList from './NotifyList.vue'
+import { type ListItem, notifyData, messageData, todoData } from './data'
 
-type TabName = "通知" | "消息" | "待办"
+type TabName = '通知' | '消息' | '待办'
 
 interface DataItem {
   name: TabName
-  type: "primary" | "success" | "warning" | "danger" | "info"
+  type: 'primary' | 'success' | 'warning' | 'danger' | 'info'
   list: ListItem[]
 }
 
@@ -22,25 +22,25 @@ const badgeMax = 99
 /** 面板宽度 */
 const popoverWidth = 350
 /** 当前 Tab */
-const activeName = ref<TabName>("通知")
+const activeName = ref<TabName>('通知')
 /** 所有数据 */
 const data = ref<DataItem[]>([
   // 通知数据
   {
-    name: "通知",
-    type: "primary",
+    name: '通知',
+    type: 'primary',
     list: notifyData
   },
   // 消息数据
   {
-    name: "消息",
-    type: "danger",
+    name: '消息',
+    type: 'danger',
     list: messageData
   },
   // 待办数据
   {
-    name: "待办",
-    type: "warning",
+    name: '待办',
+    type: 'warning',
     list: todoData
   }
 ])

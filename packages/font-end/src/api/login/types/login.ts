@@ -1,8 +1,6 @@
-import { s } from "node_modules/vite/dist/node/types.d-aGj9QkWt"
-
 export interface LoginRequestData {
   /** admin 或 editor */
-  name?: "admin" | "editor"
+  name?: 'admin' | 'editor'
   /** 密码 */
   password: string
   /** 验证码 */

@@ -1,6 +1,6 @@
-import { computed } from "vue"
-import { useSettingsStore } from "@/store/modules/settings"
-import { LayoutModeEnum } from "@/constants/app-key"
+import { computed } from 'vue'
+import { useSettingsStore } from '@/store/modules/settings'
+import { LayoutModeEnum } from '@/constants/app-key'
 
 const settingsStore = useSettingsStore()
 const isLeft = computed(() => settingsStore.layoutMode === LayoutModeEnum.Left)

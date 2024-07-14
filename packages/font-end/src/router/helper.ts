@@ -5,12 +5,12 @@ import {
   createRouter,
   createWebHashHistory,
   createWebHistory
-} from "vue-router"
-import { cloneDeep, omit } from "lodash-es"
+} from 'vue-router'
+import { cloneDeep, omit } from 'lodash-es'
 
 /** 路由模式 */
 export const history =
-  import.meta.env.VITE_ROUTER_HISTORY === "hash"
+  import.meta.env.VITE_ROUTER_HISTORY === 'hash'
     ? createWebHashHistory(import.meta.env.VITE_PUBLIC_PATH)
     : createWebHistory(import.meta.env.VITE_PUBLIC_PATH)
 
@@ -46,11 +46,15 @@ const promoteRouteLevel = (route: RouteRecordRaw) => {
   addToChildren(routes, route.children || [], route)
   router = null
   // 转为二级路由后，去除所有子路由中的 children
-  route.children = route.children?.map((item) => omit(item, "children") as RouteRecordRaw)
+  route.children = route.children?.map((item) => omit(item, 'children') as RouteRecordRaw)
 }
 
 /** 将给定的子路由添加到指定的路由模块中 */
-const addToChildren = (routes: RouteRecordNormalized[], children: RouteRecordRaw[], routeModule: RouteRecordRaw) => {
+const addToChildren = (
+  routes: RouteRecordNormalized[],
+  children: RouteRecordRaw[],
+  routeModule: RouteRecordRaw
+) => {
   children.forEach((child) => {
     const route = routes.find((item) => item.name === child.name)
     if (route) {

@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import { useLayoutMode } from "@/hooks/useLayoutMode"
-import logo from "@/assets/layouts/logo.png?url"
-import logoText1 from "@/assets/layouts/logo-text-1.png?url"
-import logoText2 from "@/assets/layouts/logo-text-2.png?url"
+import { useLayoutMode } from '@/hooks/useLayoutMode'
+import logo from '@/assets/layouts/logo.png?url'
+import logoText1 from '@/assets/layouts/logo-text-1.png?url'
+import logoText2 from '@/assets/layouts/logo-text-2.png?url'
 
 interface Props {
   collapse?: boolean
@@ -16,7 +16,10 @@ const { isLeft, isTop } = useLayoutMode()
 </script>
 
 <template>
-  <div class="layout-logo-container" :class="{ collapse: props.collapse, 'layout-mode-top': isTop }">
+  <div
+    class="layout-logo-container"
+    :class="{ collapse: props.collapse, 'layout-mode-top': isTop }"
+  >
     <transition name="layout-logo-fade">
       <router-link v-if="props.collapse" key="collapse" to="/">
         <img :src="logo" class="layout-logo" />

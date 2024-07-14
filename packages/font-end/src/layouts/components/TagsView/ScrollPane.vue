@@ -1,11 +1,11 @@
 <script lang="ts" setup>
-import { ref, nextTick } from "vue"
-import { RouterLink, useRoute } from "vue-router"
-import { useSettingsStore } from "@/store/modules/settings"
-import { useRouteListener } from "@/hooks/useRouteListener"
-import Screenfull from "@/components/Screenfull/index.vue"
-import { ElScrollbar } from "element-plus"
-import { ArrowLeft, ArrowRight } from "@element-plus/icons-vue"
+import { ref, nextTick } from 'vue'
+import { RouterLink, useRoute } from 'vue-router'
+import { useSettingsStore } from '@/store/modules/settings'
+import { useRouteListener } from '@/hooks/useRouteListener'
+import Screenfull from '@/components/Screenfull/index.vue'
+import { ElScrollbar } from 'element-plus'
+import { ArrowLeft, ArrowRight } from '@element-plus/icons-vue'
 
 interface Props {
   tagRefs: InstanceType<typeof RouterLink>[]
@@ -35,9 +35,9 @@ const scroll = ({ scrollLeft }: { scrollLeft: number }) => {
 /** 鼠标滚轮滚动时触发 */
 const wheelScroll = ({ deltaY }: WheelEvent) => {
   if (/^-/.test(deltaY.toString())) {
-    scrollTo("left")
+    scrollTo('left')
   } else {
-    scrollTo("right")
+    scrollTo('right')
   }
 }
 
@@ -54,12 +54,12 @@ const getWidth = () => {
 }
 
 /** 左右滚动 */
-const scrollTo = (direction: "left" | "right", distance: number = translateDistance) => {
+const scrollTo = (direction: 'left' | 'right', distance: number = translateDistance) => {
   let scrollLeft = 0
   const { scrollbarContentRefWidth, scrollbarRefWidth, lastDistance } = getWidth()
   // 没有横向滚动条，直接结束
   if (scrollbarRefWidth > scrollbarContentRefWidth) return
-  if (direction === "left") {
+  if (direction === 'left') {
     scrollLeft = Math.max(0, currentScrollLeft - distance)
   } else {
     scrollLeft = Math.min(currentScrollLeft + distance, currentScrollLeft + lastDistance)
@@ -81,14 +81,14 @@ const moveTo = () => {
       // 当前 tag 在可视区域左边时
       if (offsetLeft < currentScrollLeft) {
         const distance = currentScrollLeft - offsetLeft
-        scrollTo("left", distance)
+        scrollTo('left', distance)
         return
       }
       // 当前 tag 在可视区域右边时
       const width = scrollbarRefWidth + currentScrollLeft - offsetWidth
       if (offsetLeft > width) {
         const distance = offsetLeft - width
-        scrollTo("right", distance)
+        scrollTo('right', distance)
         return
       }
     }

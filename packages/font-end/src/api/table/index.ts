@@ -1,11 +1,11 @@
-import { request } from "@/utils/service"
-import type * as Table from "./types/table"
+import { request } from '@/utils/service'
+import type * as Table from './types/table'
 
 /** 增 */
 export function createTableDataApi(data: Table.CreateOrUpdateTableRequestData) {
   return request({
-    url: "table",
-    method: "post",
+    url: 'table',
+    method: 'post',
     data
   })
 }
@@ -14,15 +14,15 @@ export function createTableDataApi(data: Table.CreateOrUpdateTableRequestData) {
 export function deleteTableDataApi(id: string) {
   return request({
     url: `table/${id}`,
-    method: "delete"
+    method: 'delete'
   })
 }
 
 /** 改 */
 export function updateTableDataApi(data: Table.CreateOrUpdateTableRequestData) {
   return request({
-    url: "table",
-    method: "put",
+    url: 'table',
+    method: 'put',
     data
   })
 }
@@ -30,8 +30,8 @@ export function updateTableDataApi(data: Table.CreateOrUpdateTableRequestData) {
 /** 查 */
 export function getTableDataApi(params: Table.GetTableRequestData) {
   return request<Table.GetTableResponseData>({
-    url: "table",
-    method: "get",
+    url: 'table',
+    method: 'get',
     params
   })
 }

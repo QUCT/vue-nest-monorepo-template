@@ -4,7 +4,7 @@ const SUCCESS_RESPONSE_DATA = {
   data: {
     list: [] as number[]
   },
-  message: "获取成功"
+  message: '获取成功'
 }
 
 /** 模拟请求接口成功 */
@@ -20,7 +20,7 @@ export function getSuccessApi(list: number[]) {
 export function getErrorApi() {
   return new Promise((_resolve, reject) => {
     setTimeout(() => {
-      reject(new Error("发生错误"))
+      reject(new Error('发生错误'))
     }, 1000)
   })
 }

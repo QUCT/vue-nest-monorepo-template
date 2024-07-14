@@ -1,5 +1,5 @@
-import { type Ref, onBeforeUnmount, ref } from "vue"
-import { debounce } from "lodash-es"
+import { type Ref, onBeforeUnmount, ref } from 'vue'
+import { debounce } from 'lodash-es'
 
 type Observer = {
   watermarkElMutationObserver?: MutationObserver
@@ -14,13 +14,13 @@ const defaultConfig = {
   /** 防御（默认开启，能防御水印被删除或隐藏，但可能会有性能损耗） */
   defense: true,
   /** 文本颜色 */
-  color: "#c0c4cc",
+  color: '#c0c4cc',
   /** 文本透明度 */
   opacity: 0.5,
   /** 文本字体大小 */
   size: 16,
   /** 文本字体 */
-  family: "serif",
+  family: 'serif',
   /** 文本倾斜角度 */
   angle: -20,
   /** 一处水印所占宽度（数值越大水印密度越低） */
@@ -54,7 +54,7 @@ export function useWatermark(parentEl: Ref<HTMLElement | null> = bodyEl) {
   /** 设置水印 */
   const setWatermark = (text: string, config: Partial<DefaultConfig> = {}) => {
     if (!parentEl.value) {
-      console.warn("请在 DOM 挂载完成后再调用 setWatermark 方法设置水印")
+      console.warn('请在 DOM 挂载完成后再调用 setWatermark 方法设置水印')
       return
     }
     // 备份文本
@@ -70,14 +70,14 @@ export function useWatermark(parentEl: Ref<HTMLElement | null> = bodyEl) {
   /** 创建水印元素 */
   const createWatermarkEl = () => {
     const isBody = parentEl.value!.tagName.toLowerCase() === bodyEl.value.tagName.toLowerCase()
-    const watermarkElPosition = isBody ? "fixed" : "absolute"
-    const parentElPosition = isBody ? "" : "relative"
-    watermarkEl = document.createElement("div")
-    watermarkEl.style.pointerEvents = "none"
-    watermarkEl.style.top = "0"
-    watermarkEl.style.left = "0"
+    const watermarkElPosition = isBody ? 'fixed' : 'absolute'
+    const parentElPosition = isBody ? '' : 'relative'
+    watermarkEl = document.createElement('div')
+    watermarkEl.style.pointerEvents = 'none'
+    watermarkEl.style.top = '0'
+    watermarkEl.style.left = '0'
     watermarkEl.style.position = watermarkElPosition
-    watermarkEl.style.zIndex = "99999"
+    watermarkEl.style.zIndex = '99999'
     const { clientWidth, clientHeight } = parentEl.value!
     updateWatermarkEl({ width: clientWidth, height: clientHeight })
     // 设置水印容器为相对定位
@@ -102,10 +102,10 @@ export function useWatermark(parentEl: Ref<HTMLElement | null> = bodyEl) {
   /** 创建 base64 图片 */
   const createBase64 = () => {
     const { color, opacity, size, family, angle, width, height } = mergeConfig
-    const canvasEl = document.createElement("canvas")
+    const canvasEl = document.createElement('canvas')
     canvasEl.width = width
     canvasEl.height = height
-    const ctx = canvasEl.getContext("2d")
+    const ctx = canvasEl.getContext('2d')
     if (ctx) {
       ctx.fillStyle = color
       ctx.globalAlpha = opacity
@@ -126,7 +126,7 @@ export function useWatermark(parentEl: Ref<HTMLElement | null> = bodyEl) {
       parentEl.value.removeChild(watermarkEl)
     } catch {
       // 比如在无防御情况下，用户打开控制台删除了这个元素
-      console.warn("水印元素已不存在，请重新创建")
+      console.warn('水印元素已不存在，请重新创建')
     } finally {
       watermarkEl = null
     }
@@ -150,7 +150,7 @@ export function useWatermark(parentEl: Ref<HTMLElement | null> = bodyEl) {
       }
     } else {
       // 无防御时不需要 mutation 监听
-      removeListener("mutation")
+      removeListener('mutation')
     }
     // 防止重复添加监听
     if (!observer.parentElResizeObserver) {
@@ -160,16 +160,16 @@ export function useWatermark(parentEl: Ref<HTMLElement | null> = bodyEl) {
   }
 
   /** 移除对水印元素和容器元素的监听，传参可指定要移除哪个监听，不传默认移除全部监听 */
-  const removeListener = (kind: "mutation" | "resize" | "all" = "all") => {
+  const removeListener = (kind: 'mutation' | 'resize' | 'all' = 'all') => {
     // 移除 mutation 监听
-    if (kind === "mutation" || kind === "all") {
+    if (kind === 'mutation' || kind === 'all') {
       observer.watermarkElMutationObserver?.disconnect()
       observer.watermarkElMutationObserver = undefined
       observer.parentElMutationObserver?.disconnect()
       observer.parentElMutationObserver = undefined
     }
     // 移除 resize 监听
-    if (kind === "resize" || kind === "all") {
+    if (kind === 'resize' || kind === 'all') {
       observer.parentElResizeObserver?.disconnect()
       observer.parentElResizeObserver = undefined
     }
@@ -183,10 +183,10 @@ export function useWatermark(parentEl: Ref<HTMLElement | null> = bodyEl) {
       mutationList.forEach(
         debounce((mutation: MutationRecord) => {
           switch (mutation.type) {
-            case "attributes":
+            case 'attributes':
               mutation.target === watermarkEl && updateWatermark()
               break
-            case "childList":
+            case 'childList':
               mutation.removedNodes.forEach((item) => {
                 item === watermarkEl && targetNode.appendChild(watermarkEl)
               })

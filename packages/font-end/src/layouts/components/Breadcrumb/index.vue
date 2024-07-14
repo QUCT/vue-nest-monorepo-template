@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import { ref } from "vue"
-import { type RouteLocationMatched, useRoute, useRouter } from "vue-router"
-import { useRouteListener } from "@/hooks/useRouteListener"
-import { compile } from "path-to-regexp"
+import { ref } from 'vue'
+import { type RouteLocationMatched, useRoute, useRouter } from 'vue-router'
+import { useRouteListener } from '@/hooks/useRouteListener'
+import { compile } from 'path-to-regexp'
 
 const route = useRoute()
 const router = useRouter()
@@ -13,7 +13,9 @@ const breadcrumbs = ref<RouteLocationMatched[]>([])
 
 /** 获取面包屑导航信息 */
 const getBreadcrumb = () => {
-  breadcrumbs.value = route.matched.filter((item) => item.meta?.title && item.meta?.breadcrumb !== false)
+  breadcrumbs.value = route.matched.filter(
+    (item) => item.meta?.title && item.meta?.breadcrumb !== false
+  )
 }
 
 /** 编译路由路径 */
@@ -34,7 +36,7 @@ const handleLink = (item: RouteLocationMatched) => {
 
 /** 监听路由变化，更新面包屑导航信息 */
 listenerRouteChange((route) => {
-  if (route.path.startsWith("/redirect/")) return
+  if (route.path.startsWith('/redirect/')) return
   getBreadcrumb()
 }, true)
 </script>
@@ -42,7 +44,10 @@ listenerRouteChange((route) => {
 <template>
   <el-breadcrumb>
     <el-breadcrumb-item v-for="(item, index) in breadcrumbs" :key="item.path">
-      <span v-if="item.redirect === 'noRedirect' || index === breadcrumbs.length - 1" class="no-redirect">
+      <span
+        v-if="item.redirect === 'noRedirect' || index === breadcrumbs.length - 1"
+        class="no-redirect"
+      >
         {{ item.meta.title }}
       </span>
       <a v-else @click.prevent="handleLink(item)">

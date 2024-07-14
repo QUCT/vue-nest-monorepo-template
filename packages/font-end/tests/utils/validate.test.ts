@@ -1,32 +1,32 @@
-import { describe, expect, it } from "vitest"
-import { isArray } from "@/utils/validate"
+import { describe, expect, it } from 'vitest'
+import { isArray } from '@/utils/validate'
 
-describe("isArray", () => {
-  it("String", () => {
-    expect(isArray("")).toBe(false)
+describe('isArray', () => {
+  it('String', () => {
+    expect(isArray('')).toBe(false)
   })
-  it("Number", () => {
+  it('Number', () => {
     expect(isArray(1)).toBe(false)
   })
-  it("Boolean", () => {
+  it('Boolean', () => {
     expect(isArray(true)).toBe(false)
   })
-  it("Null", () => {
+  it('Null', () => {
     expect(isArray(null)).toBe(false)
   })
-  it("Undefined", () => {
+  it('Undefined', () => {
     expect(isArray(undefined)).toBe(false)
   })
-  it("Symbol", () => {
+  it('Symbol', () => {
     expect(isArray(Symbol())).toBe(false)
   })
-  it("BigInt", () => {
+  it('BigInt', () => {
     expect(isArray(BigInt(1))).toBe(false)
   })
-  it("Object", () => {
+  it('Object', () => {
     expect(isArray({})).toBe(false)
   })
-  it("Array Object", () => {
+  it('Array Object', () => {
     expect(isArray([])).toBe(true)
   })
 })

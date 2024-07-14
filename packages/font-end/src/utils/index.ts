@@ -1,14 +1,14 @@
-import dayjs from "dayjs"
-import { removeConfigLayout } from "@/utils/cache/local-storage"
+import dayjs from 'dayjs'
+import { removeConfigLayout } from '@/utils/cache/local-storage'
 
 /** 格式化时间 */
 export const formatDateTime = (time: string | number | Date) => {
-  return time ? dayjs(new Date(time)).format("YYYY-MM-DD HH:mm:ss") : "N/A"
+  return time ? dayjs(new Date(time)).format('YYYY-MM-DD HH:mm:ss') : 'N/A'
 }
 
 /** 用 JS 获取全局 css 变量 */
 export const getCssVariableValue = (cssVariableName: string) => {
-  let cssVariableValue = ""
+  let cssVariableValue = ''
   try {
     // 没有拿到值时，会返回空串
     cssVariableValue = getComputedStyle(document.documentElement).getPropertyValue(cssVariableName)

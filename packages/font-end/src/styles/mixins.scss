@@ -1,7 +1,7 @@
 /** 清除浮动 */
 %clearfix {
   &::after {
-    content: "";
+    content: '';
     display: table;
     clear: both;
   }

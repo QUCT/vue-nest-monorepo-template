@@ -1,11 +1,11 @@
 <script lang="ts" setup>
-import { watchEffect } from "vue"
-import { storeToRefs } from "pinia"
-import { useSettingsStore } from "@/store/modules/settings"
-import { useLayoutMode } from "@/hooks/useLayoutMode"
-import { resetConfigLayout } from "@/utils"
-import SelectLayoutMode from "./SelectLayoutMode.vue"
-import { Refresh } from "@element-plus/icons-vue"
+import { watchEffect } from 'vue'
+import { storeToRefs } from 'pinia'
+import { useSettingsStore } from '@/store/modules/settings'
+import { useLayoutMode } from '@/hooks/useLayoutMode'
+import { resetConfigLayout } from '@/utils'
+import SelectLayoutMode from './SelectLayoutMode.vue'
+import { Refresh } from '@element-plus/icons-vue'
 
 const { isLeft } = useLayoutMode()
 const settingsStore = useSettingsStore()
@@ -29,9 +29,9 @@ const {
 /** 定义 switch 设置项 */
 const switchSettings = {
   显示标签栏: showTagsView,
-  "显示 Logo": showLogo,
-  "固定 Header": fixedHeader,
-  "显示页脚 Footer": showFooter,
+  '显示 Logo': showLogo,
+  '固定 Header': fixedHeader,
+  '显示页脚 Footer': showFooter,
   显示消息通知: showNotify,
   显示切换主题按钮: showThemeSwitch,
   显示全屏按钮: showScreenfull,
@@ -54,16 +54,23 @@ watchEffect(() => {
     <SelectLayoutMode />
     <el-divider />
     <h4>功能配置</h4>
-    <div class="setting-item" v-for="(settingValue, settingName, index) in switchSettings" :key="index">
+    <div
+      class="setting-item"
+      v-for="(settingValue, settingName, index) in switchSettings"
+      :key="index"
+    >
       <span class="setting-name">{{ settingName }}</span>
-      <el-switch v-model="settingValue.value" :disabled="!isLeft && settingName === '固定 Header'" />
+      <el-switch
+        v-model="settingValue.value"
+        :disabled="!isLeft && settingName === '固定 Header'"
+      />
     </div>
     <el-button type="danger" :icon="Refresh" @click="resetConfigLayout">重 置</el-button>
   </div>
 </template>
 
 <style lang="scss" scoped>
-@import "@/styles/mixins.scss";
+@import '@/styles/mixins.scss';
 
 .setting-container {
   padding: 20px;
