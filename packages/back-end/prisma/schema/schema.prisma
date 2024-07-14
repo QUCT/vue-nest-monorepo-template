@@ -9,9 +9,9 @@ datasource db {
   relationMode = "prisma" // 关联模式切换为非外键
 }
 
-generator comments {
-  provider = "ts-node  prisma/schema/commentsGenerator.ts"
-}
+// generator comments {
+//   provider = "ts-node  prisma/schema/commentsGenerator.ts"
+// }
 
 enum Status {
   ACTIVE
